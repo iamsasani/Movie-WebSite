@@ -1,4 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css/autoplay";
+import "swiper/css";
 
 function Header() {
   const images = [
@@ -10,8 +13,7 @@ function Header() {
     },
     {
       id: 2,
-      address:
-        "https://m.media-amazon.com/images/I/91obuWzA3XL._AC_SY879_.jpg",
+      address: "https://m.media-amazon.com/images/I/91obuWzA3XL._AC_SY879_.jpg",
       name: "Interstellar",
     },
     {
@@ -25,7 +27,14 @@ function Header() {
       address:
         "//filmartgallery.com/cdn/shop/products/The-Green-Mile-Vintage-Movie-Poster-Original.jpg?v=1771944778&width=1000",
       name: " The Green Mile",
-    }
+    },
+    {
+      id: 5,
+      address:
+        "https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/gotposterbig.png",
+      name: "Game of Thrones",
+    },
+
   ];
 
   return (
@@ -34,10 +43,21 @@ function Header() {
       py-20
     "
     >
-      <Swiper spaceBetween={50} slidesPerView={4} className="mt-12">
-        {images.map(({id , address , name}) => (
+      <Swiper
+        spaceBetween={50}
+        slidesPerView={4}
+        modules={[Autoplay]}
+        autoplay={{ delay: 2000 }}
+        loop={true}
+        className="mt-12"
+      >
+        {images.map(({ id, address, name }) => (
           <SwiperSlide key={id}>
-            <img className="w-full cursor-pointer h-54  lg:h-87 xl:h-120 object-cover" src={address} alt={name} />
+            <img
+              className="w-full cursor-pointer h-54  lg:h-87 xl:h-120 object-cover"
+              src={address}
+              alt={name}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
