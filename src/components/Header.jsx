@@ -13,34 +13,34 @@ function Header() {
       address:
         "https://www.mjworld.net/wp-content/uploads/Michael-official-poster.jpg",
       name: "Mickael",
-      back : "../../assets/images/mikael.jpg"
+      back: "../../assets/images/mikael.jpg",
     },
     {
       id: 2,
       address: "https://m.media-amazon.com/images/I/91obuWzA3XL._AC_SY879_.jpg",
       name: "Interstellar",
-      back : "../../assets/images/interstellar.jpg"
+      back: "../../assets/images/interstellar.jpg",
     },
     {
       id: 3,
       address:
         "//filmartgallery.com/cdn/shop/files/Furiosa-A-Mad-Max-Saga-Vintage-Movie-Poster-Original.jpg?v=1771971916&width=1000",
       name: "Furiosa: A Mad Max Saga",
-      back : "../../assets/images/madmax.jpg"
+      back: "../../assets/images/madmax.jpg",
     },
     {
       id: 4,
       address:
         "//filmartgallery.com/cdn/shop/products/The-Green-Mile-Vintage-Movie-Poster-Original.jpg?v=1771944778&width=1000",
       name: " The Green Mile",
-       back :"../../assets/images/greenmile.jpg"
+      back: "../../assets/images/greenmile.jpg",
     },
     {
       id: 5,
       address:
         "https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/gotposterbig.png",
       name: "Game of Thrones",
-       back :"../../assets/images/got.jpg"
+      back: "../../assets/images/got.jpg",
     },
   ];
 
@@ -55,17 +55,33 @@ function Header() {
     >
       <div className="container mx-auto">
         <Swiper
-          spaceBetween={50}
-          slidesPerView={4}
+          breakpoints={{
+            320: {
+              spaceBetween: 10,
+              slidesPerView: 1,
+            },
+            640: {
+              spaceBetween: 10,
+              slidesPerView: 2,
+            },
+            768: {
+              spaceBetween: 20,
+              slidesPerView: 3,
+            },
+            1024: {
+              spaceBetween: 50,
+              slidesPerView: 4,
+            },
+          }}
           modules={[Autoplay]}
           autoplay={{ delay: 2000 }}
           loop={true}
           className="mt-12"
         >
-          {images.map(({ id, address, name , back }) => (
+          {images.map(({ id, address, name, back }) => (
             <SwiperSlide key={id}>
               <img
-                className="w-full cursor-pointer h-54  lg:h-87 xl:h-120 object-cover"
+                className="w-full cursor-pointer max-h-200 sm:max-h-115   md:h-87 xl:h-120 object-cover"
                 src={address}
                 alt={name}
                 onMouseEnter={() => setBgImage(back)}
