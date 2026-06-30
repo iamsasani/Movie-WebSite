@@ -18,10 +18,10 @@ function Content() {
       <div className="md:flex gap-4 items-center pt-15  mb-10 ">
       <h2 className="text-xl  xl:text-2xl mb-4">whats popular</h2>
       <ul className="md:flex gap-4 text-rose-300">
-        <li className="cursor-pointer">#streaming</li>
-        <li className="cursor-pointer">#On-Tv</li>
-        <li className="cursor-pointer">#For-Rent</li>
-        <li className="cursor-pointer">#In-Theaters</li>
+        <li className="cursor-pointer">streaming</li>
+        <li className="cursor-pointer">On Tv</li>
+        <li className="cursor-pointer">For Rent</li>
+        <li className="cursor-pointer">In Theaters</li>
       </ul>
 
       </div>
@@ -55,7 +55,53 @@ function Content() {
       ))}
 
       </Swiper>
+
+
+      <div className="md:flex gap-4 items-center pt-15  mb-10 ">
+      <h2 className="text-xl  xl:text-2xl mb-4">Free To Watch</h2>
+      <ul className="md:flex gap-4 text-rose-300">
+        <li className="cursor-pointer">Movie</li>
+        <li className="cursor-pointer">Tv</li>
+      </ul>
+
+      </div>
+      <Swiper
+      breakpoints={{
+        320: {
+          slidesPerView: 4,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 5,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 6,
+          spaceBetween: 20,
+        },
+
+      }}
+      pagination={{
+          type: 'progressbar',
+        }}
+        navigation={true}
+        modules={[Navigation]}
+        className="mySwiper"
+      >
+      {images.map(({ id, address, name }) => (
+        <SwiperSlide key={id}>
+        <Cart key={id} address={address} name={name} />
+        </SwiperSlide>
+      ))}
+
+      </Swiper>
+
+
+
+
     </main>
+
+    
 
     </div>
 
