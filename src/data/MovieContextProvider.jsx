@@ -42,7 +42,7 @@ const MovieContextProvider = (props) => {
       address:
         "//filmartgallery.com/cdn/shop/products/The-Avengers-Vintage-Movie-Poster-Original_afbda2f5.jpg?v=1771958740&width=1000",
       name: "Avengers",
-      back: "",
+
     },
     {
       id: 7,
