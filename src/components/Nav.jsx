@@ -32,9 +32,9 @@ function Nav() {
     setShowMenu((prev) => !prev);
   }
   return (
-    <div ref={menuRef}>
-      <nav className="   flex   justify-center text-xs lg:text-[1rem] xl:text-[1.5rem] items-center text-slate-300 uppercase">
-        <div className="container w-full justify-center mx-auto flex  mt-10  items-center">
+    <nav ref={menuRef}>
+      <div className="flex px-2 justify-center text-xs lg:text-[1rem] xl:text-[1.5rem] items-center text-slate-300 uppercase">
+        <div className="container w-full mx-auto flex  mt-10  items-center">
           <ul className="hidden md:flex gap-4 xl:gap-10 mr-3 ">
             <li className="cursor-pointer hover:text-slate-200">
               <a href="#">home</a>
@@ -45,19 +45,6 @@ function Nav() {
             <li className="cursor-pointer hover:text-slate-200">
               <a href="#">country</a>
             </li>
-          </ul>
-          <div className="bg-gray-300 hidden  text-black justify-between  md:flex mx-1  py-3 px-6  flex-1 mr-auto  max-w-xl  rounded-2xl ">
-            <input
-              type="text"
-              placeholder="search movies..."
-              className="mr-5 text-black placeholder:text-gray-800 w-full focus:outline-none"
-            />
-            <button className="cursor-pointer text-xl ">
-              <FontAwesomeIcon icon={faSearch} />
-            </button>
-          </div>
-
-          <ul className="hidden  md:flex gap-4 ml-3 xl:gap-10">
             <li className="cursor-pointer hover:text-slate-200">
               <a href="#">movies</a>
             </li>
@@ -69,11 +56,11 @@ function Nav() {
             </li>
           </ul>
 
-          <div className="mr-auto flex ml-1 gap-2 md:ml-5 items-center  text-2xl md:text-xs lg:text-[1rem] xl:text-[1.5rem]">
+          <div className="mr-auto md:mr-0 md:ml-auto flex  gap-4  items-center  text-2xl md:text-xs lg:text-[1rem] xl:text-[1.5rem]">
             <button className="cursor-pointer  text-slate-100 hover:text-blue-300 ">
               Login
             </button>
-            /
+
             <button className="cursor-pointer bg-rose-900 rounded-xl p-1  text-slate-100 hover:text-blue-300 mr-2 ">
               SingUp
             </button>
@@ -88,7 +75,21 @@ function Nav() {
             <FontAwesomeIcon icon={faList} />
           </div>
         </div>
-      </nav>
+      </div>
+      <div className="container mx-auto mt-5 ">
+      <div className="bg-gray-300 hidden  text-black justify-between  md:flex mx-1  py-3 px-6  flex-1  rounded-xl ">
+        <input
+          type="text"
+          placeholder="search movies..."
+          className="mr-5 text-black placeholder:text-gray-800 w-full focus:outline-none"
+        />
+        <button className="cursor-pointer text-xl ">
+          <FontAwesomeIcon icon={faSearch} />
+        </button>
+      </div>
+
+      </div>
+      
 
       <div
         className={`md:hidden text-gray-300 text-center mt-5 transition-all overflow-hidden duration-500 ${showMenu ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
@@ -125,8 +126,11 @@ function Nav() {
             </a>
           </li>
         </ul>
+
+        
       </div>
-    </div>
+      
+    </nav>
   );
 }
 
