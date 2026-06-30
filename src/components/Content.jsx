@@ -97,11 +97,7 @@ function Content() {
       </Swiper>
 
 
-
-
     </main>
-
-    
 
     </div>
 

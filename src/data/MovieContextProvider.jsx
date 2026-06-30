@@ -35,13 +35,14 @@ const MovieContextProvider = (props) => {
       address:
         "//filmartgallery.com/cdn/shop/files/The-Godfather-Vintage-Movie-Poster-Original_43e386f9.jpg?v=1781319771&width=1000",
       name: "GodFather 1",
-      back: "",
+      back: "../../assets/images/godfather.jpg",
     },
     {
       id: 6,
       address:
         "//filmartgallery.com/cdn/shop/products/The-Avengers-Vintage-Movie-Poster-Original_afbda2f5.jpg?v=1771958740&width=1000",
       name: "Avengers",
+      back: "../../assets/images/avengers.jpg",
 
     },
     {
@@ -56,14 +57,14 @@ const MovieContextProvider = (props) => {
       address:
         "//filmartgallery.com/cdn/shop/products/Spider-Man-Vintage-Movie-Poster-Original.jpg?v=1771946444&width=1000",
       name: "Spider-Man",
-      back: "",
+      back: "../../assets/images/spiderman.jpg",
     },
     {
       id: 9,
       address:
         "//filmartgallery.com/cdn/shop/products/Venom-Vintage-Movie-Poster-Original.jpg?v=1771945265&width=1000",
       name: "Venom",
-      back: "",
+      back: "../../assets/images/venom.jpg",
     },
   ];
 

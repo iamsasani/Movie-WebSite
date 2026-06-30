@@ -4,6 +4,7 @@ import {BrowserRouter as Router , Routes , Route} from "react-router-dom"
 import Main from './pages/Main'
 import Nav from './components/Nav'
 import MovieContextProvider from './data/MovieContextProvider'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
             <Route/>
 
         </Routes>
-
+        <Footer/>
         </MovieContextProvider>
 
 
