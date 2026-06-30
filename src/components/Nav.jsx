@@ -57,11 +57,11 @@ function Nav() {
           </ul>
 
           <div className="mr-auto md:mr-0 md:ml-auto flex  gap-4  items-center  text-2xl md:text-xs lg:text-[1rem] xl:text-[1.5rem]">
-            <button className="cursor-pointer  text-slate-100 hover:text-blue-300 ">
+            <button className="cursor-pointer  text-slate-100  ">
               Login
             </button>
 
-            <button className="cursor-pointer bg-rose-900 rounded-xl p-1  text-slate-100 hover:text-blue-300 mr-2 ">
+            <button className="cursor-pointer bg-green-700 rounded-xl xl:px-4 p-1 px-2 hover:bg-green-600 text-slate-100   ">
               SingUp
             </button>
             <span className="hidden md:block">

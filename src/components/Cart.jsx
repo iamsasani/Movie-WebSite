@@ -6,7 +6,7 @@ function Cart({address , name}) {
   return (
     <>
 
-      <div className="border-2   relative rounded-sm overflow-hidden group cursor-pointer">
+      <div className="border-2   relative rounded-sm overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300">
         <img
           src={address}
           className="object-cover aspect-2/3 opacity-100 group-hover:opacity-70"
