@@ -1,10 +1,12 @@
+import Content from "../components/Content";
 import Header from "../components/Header";
 
 
 function Main() {
   return (
-    <main>
+    <main >
         <Header/>
+        <Content/>
     </main>
   );
 }

@@ -91,7 +91,7 @@ function Nav() {
       </nav>
 
       <div
-        className={`md:hidden text-gray-300 text-center mt-5 transition-all duration-500 ${showMenu ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+        className={`md:hidden text-gray-300 text-center mt-5 transition-all overflow-hidden duration-500 ${showMenu ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
       >
         <ul className="flex flex-col gap-4 border-t-2 border-slate-300 py-2  ">
           <li>
