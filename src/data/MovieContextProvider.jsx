@@ -12,7 +12,7 @@ const MovieContextProvider = (props) => {
     },
     {
       id: 2,
-      address: "https://m.media-amazon.com/images/I/91obuWzA3XL._AC_SY879_.jpg",
+      address: "//filmartgallery.com/cdn/shop/files/Interstellar-Vintage-Movie-Poster-Original_9db94277.jpg?v=1782529545&width=1000",
       name: "Interstellar",
       back: "../../assets/images/interstellar.jpg",
     },
@@ -33,9 +33,37 @@ const MovieContextProvider = (props) => {
     {
       id: 5,
       address:
+        "//filmartgallery.com/cdn/shop/files/The-Godfather-Vintage-Movie-Poster-Original_43e386f9.jpg?v=1781319771&width=1000",
+      name: "GodFather 1",
+      back: "",
+    },
+    {
+      id: 6,
+      address:
+        "//filmartgallery.com/cdn/shop/products/The-Avengers-Vintage-Movie-Poster-Original_afbda2f5.jpg?v=1771958740&width=1000",
+      name: "Avengers",
+      back: "",
+    },
+    {
+      id: 7,
+      address:
         "https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/gotposterbig.png",
       name: "Game of Thrones",
       back: "../../assets/images/got.jpg",
+    },
+    {
+      id: 8,
+      address:
+        "//filmartgallery.com/cdn/shop/products/Spider-Man-Vintage-Movie-Poster-Original.jpg?v=1771946444&width=1000",
+      name: "Spider-Man",
+      back: "",
+    },
+    {
+      id: 9,
+      address:
+        "//filmartgallery.com/cdn/shop/products/Venom-Vintage-Movie-Poster-Original.jpg?v=1771945265&width=1000",
+      name: "Venom",
+      back: "",
     },
   ];
 

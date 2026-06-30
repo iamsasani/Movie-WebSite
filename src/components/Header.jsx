@@ -39,7 +39,7 @@ function Header() {
             },
           }}
           modules={[Autoplay]}
-          autoplay={{ delay: 2000 }}
+          autoplay={{ delay: 8000 }}
           loop={true}
           className="mt-12"
         >
