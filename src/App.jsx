@@ -2,7 +2,6 @@
 import './App.css'
 import {HashRouter as Router , Routes , Route} from "react-router-dom"
 import Main from './pages/Main'
-import Nav from './components/Nav'
 import MovieContextProvider from './data/MovieContextProvider'
 import Footer from './components/Footer'
 
@@ -13,7 +12,6 @@ function App() {
     <>
       <Router>
         <MovieContextProvider>
-        <Nav/>
         <Routes>
             <Route path='/' element={<Main/>}/>
             <Route/>

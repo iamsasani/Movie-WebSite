@@ -2,20 +2,32 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css/autoplay";
 import "swiper/css";
-import { useContext, useState } from "react";
-import { Context } from "../data/Context";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { ApiKey, BaseUrlImage, BaseUrlMovie } from "../data/data";
 
 function Header() {
-  const [bgImage, setBgImage] = useState("../../assets/images/background.jpg");
 
-  const {images} = useContext(Context);
+
+  const [movies , setMovies] =useState([]);
+
+
+  useEffect(() => {
+    async function loadMovies() {
+      const { data } = await axios.get(`${BaseUrlMovie}/movie/popular?api_key=${ApiKey}`);
+      setMovies(data.results);
+    }
+
+    loadMovies();
+  }, []);
+
   return (
     <header
-      className="text-white bg-cover mt-5
+      className="text-white bg-contain bg-center mt-5
       py-20 px-3  transition-all duration-700
     "
       style={{
-        backgroundImage: `linear-gradient(to bottom , rgba(0 0 0/ 60%), rgba(0 0 0/ 50%) ,rgba(0 0 0/ 60%)), url(${bgImage})`,
+        backgroundImage: `linear-gradient(to bottom , rgba(0 0 0/ 60%), rgba(0 0 0/ 50%) ,rgba(0 0 0/ 60%)), url("https://images.unsplash.com/photo-1669606340421-2a0928d9f7ae?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")`,
       }}
     >
       <div className="container mx-auto">
@@ -40,19 +52,15 @@ function Header() {
           }}
           modules={[Autoplay]}
           autoplay={{ delay: 4000 }}
-          loop={true}
+          loop
           className="mt-12"
         >
-          {images.map(({ id, address, name, back }) => (
-            <SwiperSlide key={id}>
+          {movies.map((movie) => (
+            <SwiperSlide key={movie.id}>
               <img
                 className="w-full cursor-pointer max-h-200 sm:max-h-115   md:h-87 xl:h-120 object-cover"
-                src={address}
-                alt={name}
-                onMouseEnter={() => setBgImage(back)}
-                onMouseLeave={() =>
-                  setBgImage("../../assets/images/background.jpg")
-                }
+                src={`${BaseUrlImage}/w500${movie.poster_path}`}
+                alt={movie.title}
               />
             </SwiperSlide>
           ))}

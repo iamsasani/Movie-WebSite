@@ -34,7 +34,7 @@ function Nav() {
   return (
     <nav ref={menuRef}>
       <div className="flex px-2 justify-center text-xs lg:text-[1rem] xl:text-[1.5rem] items-center text-slate-300 uppercase">
-        <div className="container w-full mx-auto flex  mt-10  items-center">
+        <div className="container  mx-auto flex  mt-10  items-center">
          <h1 className="md:mr-10 text-2xl lg:text-3xl font-bold flex items-baseline"> <span className="text-3xl lg:text-4xl text-yellow-200">P</span>opCorn<span className="text-red-600 text-3xl lg:text-4xl">DB</span>🍿</h1>
          
           <ul className="hidden md:flex gap-4 xl:gap-10 mr-3 ">

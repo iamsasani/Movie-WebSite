@@ -12,13 +12,13 @@ import { faImdb } from "@fortawesome/free-brands-svg-icons";
 function Content() {
   const { images } = useContext(Context);
   return (
-    <div className="min-h-screen bg-linear-to-b from-black  via-red-950  to-black">
+    <div className="min-h-screen ">
       <main className="text-white  container mx-auto min-h-screen px-3 sm:p-0">
-        <div className="md:flex gap-4 items-baseline pt-15  mb-10 ">
+        <div className="md:flex gap-4 border-b items-baseline pt-15  mb-10 ">
           <h2 className="text-2xl  xl:text-3xl mb-4">Movies</h2>
-          <ul className="md:flex gap-4 items-baseline text-rose-300">
+          <ul className="md:flex gap-4 items-baseline text-yellow-300">
             <li className="cursor-pointer">Last Movies</li>
-            <li className="cursor-pointer text-rose-400  text-xl">Last 2026</li>
+            <li className="cursor-pointer text-yellow-400  text-xl">Last 2026</li>
             <li className="cursor-pointer">Last 2025</li>
             <li className="cursor-pointer">
               IMDB{" "}
@@ -58,16 +58,17 @@ function Content() {
           ))}
         </Swiper>
 
-        <div className="md:flex gap-4 items-baseline pt-15  mb-10 ">
+        <div className="md:flex gap-4 border-b items-baseline pt-15  mb-10 ">
           <h2 className="text-2xl  xl:text-3xl mb-4">Genres</h2>
-          <ul className="md:flex gap-4 text-rose-300 items-baseline">
+          <ul className="md:flex gap-4 text-yellow-300 items-baseline">
             <li className="cursor-pointer">action</li>
             <li className="cursor-pointer">comedy</li>
-            <li className="cursor-pointer text-rose-400  text-xl">drama</li>
+            <li className="cursor-pointer text-yellow-400 text-xl">drama</li>
             <li className="cursor-pointer">horror</li>
             <li className="cursor-pointer">sci-fi</li>
           </ul>
         </div>
+        
         <Swiper
           breakpoints={{
             320: {
@@ -97,7 +98,7 @@ function Content() {
           ))}
         </Swiper>
 
-        <div className="md:flex gap-4 items-baseline pt-15  mb-10 ">
+        <div className="md:flex gap-4 border-b items-baseline pt-15  mb-10 ">
           <h2 className="text-2xl  xl:text-3xl mb-4">Suggestions 🌟</h2>
 
         </div>
