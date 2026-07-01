@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://iamsasani.github.io/MyPortfolio",
+  "homepage": "https://iamsasani.github.io/Movie-WebSite",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
