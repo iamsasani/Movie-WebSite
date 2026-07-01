@@ -35,6 +35,8 @@ function Nav() {
     <nav ref={menuRef}>
       <div className="flex px-2 justify-center text-xs lg:text-[1rem] xl:text-[1.5rem] items-center text-slate-300 uppercase">
         <div className="container w-full mx-auto flex  mt-10  items-center">
+         <h1 className="md:mr-10 text-2xl lg:text-3xl font-bold flex items-baseline"> <span className="text-3xl lg:text-4xl text-yellow-200">P</span>opCorn<span className="text-red-600 text-3xl lg:text-4xl">DB</span>🍿</h1>
+         
           <ul className="hidden md:flex gap-4 xl:gap-10 mr-3 ">
             <li className="cursor-pointer hover:text-slate-200">
               <a href="#">home</a>
@@ -56,7 +58,7 @@ function Nav() {
             </li>
           </ul>
 
-          <div className="mr-auto md:mr-0 md:ml-auto flex  gap-4  items-center  text-2xl md:text-xs lg:text-[1rem] xl:text-[1.5rem]">
+          <div className="mx-auto md:mr-0 md:ml-auto flex  gap-4  items-center  text-2xl md:text-xs lg:text-[1rem] xl:text-[1.5rem]">
             <button className="cursor-pointer  text-slate-100  ">
               Login
             </button>

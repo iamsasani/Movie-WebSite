@@ -1,6 +1,6 @@
 
 import './App.css'
-import {BrowserRouter as Router , Routes , Route} from "react-router-dom"
+import {HashRouter as Router , Routes , Route} from "react-router-dom"
 import Main from './pages/Main'
 import Nav from './components/Nav'
 import MovieContextProvider from './data/MovieContextProvider'
