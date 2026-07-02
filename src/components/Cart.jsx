@@ -1,7 +1,7 @@
 
 
 
-function Cart({address , name}) {
+function Cart({address , name , rate}) {
 
   return (
     <>
@@ -13,7 +13,7 @@ function Cart({address , name}) {
         />
         <div className="absolute lg:text-lg w-full h-full text-xs  group-hover:top-2 transition-all duration-400 left-1 ">
           <h1>{name}</h1>
-          <span>8.2/10 ⭐</span>
+          <span>{rate} /10 ⭐</span>
         </div>
       </div>
 

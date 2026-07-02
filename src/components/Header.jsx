@@ -12,6 +12,7 @@ function Header() {
   const [movies , setMovies] =useState([]);
 
 
+
   useEffect(() => {
     async function loadMovies() {
       const { data } = await axios.get(`${BaseUrlMovie}/movie/popular?api_key=${ApiKey}`);
@@ -57,11 +58,19 @@ function Header() {
         >
           {movies.map((movie) => (
             <SwiperSlide key={movie.id}>
+              <div  className="relative">
               <img
-                className="w-full cursor-pointer max-h-200 sm:max-h-115   md:h-87 xl:h-120 object-cover"
+                className="w-full cursor-pointer  max-h-200 sm:max-h-115   md:h-87 xl:h-120 object-cover"
                 src={`${BaseUrlImage}/w500${movie.poster_path}`}
                 alt={movie.title}
               />
+              <div  className="flex absolute bottom-10  flex-col left-10 font-bold rounded-2xl  backdrop-blur-xs p-1">
+              <span className=" text-4xl
+               ">{movie.vote_average.toFixed(1)}/10 ⭐ </span>
+               <span className="text-2xl
+               ">{movie.title}</span>
+              </div>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
