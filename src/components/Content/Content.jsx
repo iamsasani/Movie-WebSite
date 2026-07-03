@@ -8,31 +8,46 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import axios from "axios";
 import { ApiKey, BaseUrlImage, BaseUrlMovie } from "../../data/data";
+import { NavLink } from "react-router-dom";
+import TvCart from "./TvCart";
 
 function Content() {
   const { images } = useContext(Context);
 
-    const [movies , setMovies] =useState([]);
+  const [movies, setMovies] = useState([]);
+  const [Tv, setTv] = useState([]);
 
-    const [type , setType] = useState("movie/top_rated");
-
-
-
+  const [movieType, setMovieType] = useState("movie/top_rated");
+  const [tvType, setTvType] = useState("tv/top_rated");
 
   useEffect(() => {
     async function loadMovies() {
-      const { data } = await axios.get(`${BaseUrlMovie}/${type}?api_key=${ApiKey}`);
+      const { data } = await axios.get(
+        `${BaseUrlMovie}/${movieType}?api_key=${ApiKey}`,
+      );
       setMovies(data.results);
     }
 
     loadMovies();
-  }, [type]);
+  }, [movieType]);
 
+  useEffect(() => {
+    async function loadTV() {
+      const { data } = await axios.get(
+        `${BaseUrlMovie}/${tvType}?api_key=${ApiKey}`,
+      );
+      setTv(data.results);
+    }
 
+    loadTV();
+  }, [tvType]);
 
-
-
-
+  const tvSeriesList = [
+    { id: 1, text: "Airing Today", path: "tv/airing_today" },
+    { id: 2, text: "On The Air", path: "tv/on_the_air" },
+    { id: 3, text: "Popular", path: "tv/popular" },
+    { id: 4, text: "Top Rated", path: "tv/top_rated" },
+  ];
 
   return (
     <div className="min-h-screen ">
@@ -40,9 +55,45 @@ function Content() {
         <div className="md:flex gap-6 border-b  pb-2 items-baseline pt-15  mb-10 ">
           <h2 className="text-2xl  xl:text-4xl mb-4">Movies</h2>
           <ul className="md:flex text-xl xl:text-2xl gap-10 items-baseline text-yellow-200">
-            <li className={`cursor-pointer transition duration-400 ${type === "movie/top_rated" ? "text-yellow-400 text-2xl xl:text-3xl " : ""}`}><a href="#" onClick={(e) => { e.preventDefault(); setType("movie/top_rated"); }}>Top Rated</a></li>
-            <li className={`cursor-pointer transition duration-400 ${type === "movie/upcoming" ? "text-yellow-400 text-2xl xl:text-3xl " : ""}`}><a href="#" onClick={(e) => { e.preventDefault(); setType("movie/upcoming"); }}>Upcoming</a></li>
-            <li className={`cursor-pointer transition duration-400 ${type === "movie/now_playing" ? "text-yellow-400 text-2xl xl:text-3xl " : ""}`}><a href="#" onClick={(e) => { e.preventDefault(); setType("movie/now_playing"); }}>Now Playing</a></li>
+            <li
+              className={`cursor-pointer transition duration-400 ${movieType === "movie/top_rated" ? "text-yellow-400 text-2xl xl:text-3xl " : ""}`}
+            >
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMovieType("movie/top_rated");
+                }}
+              >
+                Top Rated
+              </a>
+            </li>
+            <li
+              className={`cursor-pointer transition duration-400 ${movieType === "movie/upcoming" ? "text-yellow-400 text-2xl xl:text-3xl " : ""}`}
+            >
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMovieType("movie/upcoming");
+                }}
+              >
+                Upcoming
+              </a>
+            </li>
+            <li
+              className={`cursor-pointer transition duration-400 ${movieType === "movie/now_playing" ? "text-yellow-400 text-2xl xl:text-3xl " : ""}`}
+            >
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMovieType("movie/now_playing");
+                }}
+              >
+                Now Playing
+              </a>
+            </li>
           </ul>
         </div>
         <Swiper
@@ -69,18 +120,28 @@ function Content() {
         >
           {movies.map((movie) => (
             <SwiperSlide key={movie.id}>
-              <Cart key={movie.id} rate={ movie.vote_average.toFixed(1)} address={`${BaseUrlImage}/w500${movie.poster_path}`} name={movie.title} />
+              <Cart
+                key={movie.id}
+                rate={movie.vote_average.toFixed(1)}
+                address={`${BaseUrlImage}/w500${movie.poster_path}`}
+                name={movie.title}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
 
         <div className="md:flex gap-4 border-b items-baseline pt-15  mb-10 ">
           <h2 className="text-2xl  xl:text-3xl mb-4">TV Series</h2>
-          <ul className="md:flex gap-4 text-yellow-300 items-baseline">
-            <li className="cursor-pointer">Airing Today</li>
-            <li className="cursor-pointer">On The Air</li>
-            <li className="cursor-pointer text-yellow-400 text-xl">Popular</li>
-            <li className="cursor-pointer">Top Rated</li>
+          <ul className="md:flex  gap-10 items-baseline text-yellow-200">
+            {tvSeriesList.map((item) => (
+              <li
+                key={item.id}
+                className={`cursor-pointer ${tvType === item.path ? "text-yellow-400 block text-2xl xl:text-3xl" : "text-yellow-200 text-xl xl:text-2xl"}`}
+                onClick={() => setTvType(item.path)}
+              >
+                <NavLink>{item.text}</NavLink>
+              </li>
+            ))}
           </ul>
         </div>
         <Swiper
@@ -105,16 +166,20 @@ function Content() {
           modules={[Navigation]}
           className="mySwiper"
         >
-          {images.map(({id , address , name}) => (
-            <SwiperSlide key={id}>
-              <Cart key={id} address={address} name={name} />
+          {Tv.map((tv) => (
+            <SwiperSlide key={tv.id}>
+              <TvCart
+                key={tv.id}
+                rate={tv.vote_average.toFixed(1)}
+                address={`${BaseUrlImage}/w500${tv.poster_path}`}
+                name={tv.name}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
 
         <div className="md:flex gap-4 border-b items-baseline pt-15  mb-10 ">
           <h2 className="text-2xl  xl:text-3xl mb-4">Suggestions 🌟</h2>
-
         </div>
         <Swiper
           breakpoints={{

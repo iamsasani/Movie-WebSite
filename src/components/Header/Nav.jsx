@@ -63,7 +63,7 @@ function Nav() {
   ];
 
   function activeClass({ isActive }) {
-    return isActive ? "text-yellow-400" : "";
+    return isActive ? "text-yellow-300" : "";
   }
 
   function handleMenu() {
