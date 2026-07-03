@@ -1,5 +1,5 @@
 import Cart from "./Cart";
-import { Context } from "../data/Context";
+import { Context } from "../../data/Context";
 import { useContext, useEffect, useState } from "react";
 import "swiper/css/autoplay";
 import "swiper/css";
@@ -7,7 +7,7 @@ import { SwiperSlide, Swiper } from "swiper/react";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import axios from "axios";
-import { ApiKey, BaseUrlImage, BaseUrlMovie } from "../data/data";
+import { ApiKey, BaseUrlImage, BaseUrlMovie } from "../../data/data";
 
 function Content() {
   const { images } = useContext(Context);

@@ -4,7 +4,7 @@ import "swiper/css/autoplay";
 import "swiper/css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { ApiKey, BaseUrlImage, BaseUrlMovie } from "../data/data";
+import { ApiKey, BaseUrlImage, BaseUrlMovie } from "../../data/data";
 
 function Header() {
 
