@@ -67,7 +67,14 @@ const MovieContextProvider = (props) => {
     },
   ];
 
-  const contextValue = { images };
+    const tvSeriesList = [
+    { id: 1, text: "Airing Today", path: "tv/airing_today" },
+    { id: 2, text: "On The Air", path: "tv/on_the_air" },
+    { id: 3, text: "Popular", path: "tv/popular" },
+    { id: 4, text: "Top Rated", path: "tv/top_rated" },
+  ];
+
+  const contextValue = { images , tvSeriesList};
   return (
     <Context.Provider value={contextValue}>{props.children}</Context.Provider>
   );

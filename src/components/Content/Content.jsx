@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom";
 import TvCart from "./TvCart";
 
 function Content() {
-  const { images } = useContext(Context);
+  const { images , tvSeriesList } = useContext(Context);
 
   const [movies, setMovies] = useState([]);
   const [Tv, setTv] = useState([]);
@@ -42,16 +42,13 @@ function Content() {
     loadTV();
   }, [tvType]);
 
-  const tvSeriesList = [
-    { id: 1, text: "Airing Today", path: "tv/airing_today" },
-    { id: 2, text: "On The Air", path: "tv/on_the_air" },
-    { id: 3, text: "Popular", path: "tv/popular" },
-    { id: 4, text: "Top Rated", path: "tv/top_rated" },
-  ];
+
 
   return (
     <div className="min-h-screen ">
       <main className="text-white  container mx-auto min-h-screen px-3 sm:p-0">
+
+        {/* movies list */}
         <div className="md:flex gap-6 border-b  pb-2 items-baseline pt-15  mb-10 ">
           <h2 className="text-2xl  xl:text-4xl mb-4">Movies</h2>
           <ul className="md:flex text-xl xl:text-2xl gap-10 items-baseline text-yellow-200">
@@ -130,13 +127,15 @@ function Content() {
           ))}
         </Swiper>
 
+
+        {/* tv series list */}
         <div className="md:flex gap-4 border-b items-baseline pt-15  mb-10 ">
           <h2 className="text-2xl  xl:text-3xl mb-4">TV Series</h2>
           <ul className="md:flex  gap-10 items-baseline text-yellow-200">
             {tvSeriesList.map((item) => (
               <li
                 key={item.id}
-                className={`cursor-pointer ${tvType === item.path ? "text-yellow-400 block text-2xl xl:text-3xl" : "text-yellow-200 text-xl xl:text-2xl"}`}
+                className={`cursor-pointer transition duration-400 ${tvType === item.path ? "text-yellow-400 block text-2xl xl:text-3xl" : "text-yellow-200 text-xl xl:text-2xl"}`}
                 onClick={() => setTvType(item.path)}
               >
                 <NavLink>{item.text}</NavLink>
@@ -178,6 +177,7 @@ function Content() {
           ))}
         </Swiper>
 
+          {/* suggestions list */}
         <div className="md:flex gap-4 border-b items-baseline pt-15  mb-10 ">
           <h2 className="text-2xl  xl:text-3xl mb-4">Suggestions 🌟</h2>
         </div>

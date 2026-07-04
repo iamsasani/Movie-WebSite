@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer'
 import Home from './pages/Home'
 import Movies from './pages/Movies'
 import Nav from './components/Header/Nav'
+import Genre from './pages/Genre'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Routes >
             <Route path='/' element={<Home/>}/>
             <Route path='/movies' element={<Movies/>}/>
+            <Route path='/genre' element={<Genre/>}/>
             <Route path="*"/>
         </Routes>
         <Footer/>
