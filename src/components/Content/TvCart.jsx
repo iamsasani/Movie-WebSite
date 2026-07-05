@@ -1,13 +1,14 @@
+import { NavLink } from "react-router-dom";
 
 
 
-function TvCart({address , name , rate}) {
+function TvCart({address , name, id , rate}) {
 
   return (
     <>
-
+      <NavLink to={`/movies/${id}`}>
       <div className="border-2   relative rounded-sm overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300">
-        <a>
+
         <img
           src={address}
           className="object-cover aspect-2/3 opacity-100 group-hover:opacity-70"
@@ -16,8 +17,10 @@ function TvCart({address , name , rate}) {
           <h1>{name}</h1>
           <span>{rate} /10 ⭐</span>
         </div>
-        </a>
+
       </div>
+
+      </NavLink>
 
 
     </>

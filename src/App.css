@@ -7,3 +7,16 @@
 .swiper-button-prev{
   @apply flex items-center justify-center w-10 h-10 bg-black  rounded-full text-white absolute top-1/2 transform rotate-180 lg:scale-150 lg:left-4  -translate-y-1/2 left-2 z-10;
 }
+
+@theme {
+  --animate-ticker: ticker var(--ticker-duration, 8s) linear infinite;
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

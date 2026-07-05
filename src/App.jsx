@@ -7,6 +7,8 @@ import Home from './pages/Home'
 import Movies from './pages/Movies'
 import Nav from './components/Header/Nav'
 import Genre from './pages/Genre'
+import Movie from './pages/Movie'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
 
@@ -15,10 +17,12 @@ function App() {
     <div className="bg-linear-to-r from-slate-900/60 via-black to-slate-900/60 ">
       <Router >
         <MovieContextProvider>
+          <ScrollToTop/>
           <Nav/>
         <Routes >
             <Route path='/' element={<Home/>}/>
             <Route path='/movies' element={<Movies/>}/>
+            <Route path='/movies/:id' element={<Movie/>}/>
             <Route path='/genre' element={<Genre/>}/>
             <Route path="*"/>
         </Routes>

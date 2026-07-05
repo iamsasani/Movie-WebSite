@@ -40,25 +40,11 @@ function Nav() {
       path: "/genre",
       text: "genre",
     },
-    {
-      id: 3,
-      path: "/country",
-      text: "country",
-    },
+
     {
       id: 4,
       path: "/movies",
       text: "movies",
-    },
-    {
-      id: 5,
-      path: "/series",
-      text: "series",
-    },
-    {
-      id: 6,
-      path: "/animation",
-      text: "animation",
     },
   ];
 

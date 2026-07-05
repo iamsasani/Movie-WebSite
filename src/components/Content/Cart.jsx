@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 
@@ -6,8 +7,9 @@ function Cart({address , name , rate}) {
   return (
     <>
 
-      <div className="border-2   relative rounded-sm overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300">
-        <a>
+    <Link to={"/movies/57"}>
+          <div className="border-2   relative rounded-sm overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300">
+
         <img
           src={address}
           className="object-cover aspect-2/3 opacity-100 group-hover:opacity-70"
@@ -16,9 +18,10 @@ function Cart({address , name , rate}) {
           <h1>{name}</h1>
           <span>{rate} /10 ⭐</span>
         </div>
-        </a>
+
       </div>
 
+    </Link>
 
     </>
   );

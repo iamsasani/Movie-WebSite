@@ -118,6 +118,7 @@ function Content() {
           {movies.map((movie) => (
             <SwiperSlide key={movie.id}>
               <Cart
+              id={movie.id}
                 key={movie.id}
                 rate={movie.vote_average.toFixed(1)}
                 address={`${BaseUrlImage}/w500${movie.poster_path}`}
@@ -169,6 +170,7 @@ function Content() {
             <SwiperSlide key={tv.id}>
               <TvCart
                 key={tv.id}
+                id={tv.id}
                 rate={tv.vote_average.toFixed(1)}
                 address={`${BaseUrlImage}/w500${tv.poster_path}`}
                 name={tv.name}
@@ -205,7 +207,7 @@ function Content() {
         >
           {images.map(({ id, address, name }) => (
             <SwiperSlide key={id}>
-              <Cart key={id} address={address} name={name} />
+              <Cart key={id} id={id} address={address} name={name} />
             </SwiperSlide>
           ))}
         </Swiper>
