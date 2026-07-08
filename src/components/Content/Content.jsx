@@ -1,46 +1,16 @@
 import Cart from "./Cart";
 import { Context } from "../../data/Context";
-import { useContext, useEffect, useState } from "react";
 import "swiper/css/autoplay";
 import "swiper/css";
 import { SwiperSlide, Swiper } from "swiper/react";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
-import axios from "axios";
-import { ApiKey, BaseUrlImage, BaseUrlMovie } from "../../data/data";
 import { NavLink } from "react-router-dom";
 import TvCart from "./TvCart";
+import { useContext } from "react";
 
 function Content() {
-  const { images , tvSeriesList } = useContext(Context);
-
-  const [movies, setMovies] = useState([]);
-  const [Tv, setTv] = useState([]);
-
-  const [movieType, setMovieType] = useState("movie/top_rated");
-  const [tvType, setTvType] = useState("tv/top_rated");
-
-  useEffect(() => {
-    async function loadMovies() {
-      const { data } = await axios.get(
-        `${BaseUrlMovie}/${movieType}?api_key=${ApiKey}`,
-      );
-      setMovies(data.results);
-    }
-
-    loadMovies();
-  }, [movieType]);
-
-  useEffect(() => {
-    async function loadTV() {
-      const { data } = await axios.get(
-        `${BaseUrlMovie}/${tvType}?api_key=${ApiKey}`,
-      );
-      setTv(data.results);
-    }
-
-    loadTV();
-  }, [tvType]);
+  const { tvSeriesList, movies, movieType, setMovieType, Tv, tvType, setTvType } = useContext(Context);
 
 
 
@@ -118,11 +88,8 @@ function Content() {
           {movies.map((movie) => (
             <SwiperSlide key={movie.id}>
               <Cart
-              id={movie.id}
                 key={movie.id}
-                rate={movie.vote_average.toFixed(1)}
-                address={`${BaseUrlImage}/w500${movie.poster_path}`}
-                name={movie.title}
+                movie={movie}
               />
             </SwiperSlide>
           ))}
@@ -167,13 +134,10 @@ function Content() {
           className="mySwiper"
         >
           {Tv.map((tv) => (
-            <SwiperSlide key={tv.id}>
+            <SwiperSlide>
               <TvCart
                 key={tv.id}
-                id={tv.id}
-                rate={tv.vote_average.toFixed(1)}
-                address={`${BaseUrlImage}/w500${tv.poster_path}`}
-                name={tv.name}
+                tv={tv}
               />
             </SwiperSlide>
           ))}
@@ -205,9 +169,12 @@ function Content() {
           modules={[Pagination]}
           className="mySwiper"
         >
-          {images.map(({ id, address, name }) => (
-            <SwiperSlide key={id}>
-              <Cart key={id} id={id} address={address} name={name} />
+          {movies.map((movie) => (
+            <SwiperSlide>
+              <Cart
+                key={movie.id}
+                movie={movie}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

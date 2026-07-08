@@ -20,3 +20,13 @@
     transform: translateX(-50%);
   }
 }
+
+
+/* cart */
+
+.nameRate{
+  @apply absolute lg:text-lg w-full h-full text-xs top-2 lg:-top-30 group-hover:top-2 transition-all duration-400 left-1 ;
+}
+.imgCart{
+  @apply object-cover aspect-2/3 opacity-70 lg:opacity-100 group-hover:opacity-70;
+}

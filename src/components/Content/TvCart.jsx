@@ -1,21 +1,23 @@
 import { NavLink } from "react-router-dom";
+import { BaseUrlImage } from "../../data/data";
 
 
 
-function TvCart({address , name, id , rate}) {
+function TvCart({tv}) {
 
   return (
     <>
-      <NavLink to={`/movies/${id}`}>
+      <NavLink to={`/movies/${tv.id}`}>
       <div className="border-2   relative rounded-sm overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300">
 
         <img
-          src={address}
-          className="object-cover aspect-2/3 opacity-100 group-hover:opacity-70"
+          src={`${BaseUrlImage}/w500${tv.poster_path}`}
+          className="imgCart"
+          alt={tv.name}
         />
-        <div className="absolute lg:text-lg w-full h-full text-xs  group-hover:top-2 transition-all duration-400 left-1 ">
-          <h1>{name}</h1>
-          <span>{rate} /10 ⭐</span>
+        <div className="nameRate">
+          <h1>{tv.name}</h1>
+          <span>{tv.vote_average.toFixed(1)} /10 ⭐</span>
         </div>
 
       </div>

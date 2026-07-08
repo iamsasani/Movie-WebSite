@@ -10,7 +10,7 @@ function Movies() {
   useEffect(() => {
     async function loadMovies() {
       const { data } = await axios.get(
-        `${BaseUrlMovie}/movie/popular?api_key=${ApiKey}`,
+        `${BaseUrlMovie}/discover/movie?api_key=${ApiKey}`,
       );
       setPopular(data.results);
     }
@@ -41,7 +41,7 @@ function Movies() {
            font-bold text-gray-300"
 
           />
-          <div className="bg-amber-500 rounded-xl text-center mx-2 text-lg mt-1">IMDB: {pop.vote_average.toFixed(1)}</div>
+          <div className="bg-amber-500 rounded-xl text-center mx-2 text-sm sm:text-lg mt-1">IMDB: {pop.vote_average.toFixed(1)}</div>
         </div>
       ))}
       {top.map((top) => (
@@ -57,7 +57,7 @@ function Movies() {
            font-bold text-gray-300"
 
           />
-          <div className="bg-amber-500 rounded-xl text-center mx-2 text-lg mt-1">IMDB: {top.vote_average.toFixed(1)}</div>
+          <div className="bg-amber-500 rounded-xl text-center mx-2 text-sm sm:text-lg mt-1">IMDB: {top.vote_average.toFixed(1)}</div>
         </div>
       ))}
     </div>

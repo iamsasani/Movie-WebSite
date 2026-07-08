@@ -52,7 +52,7 @@ function Header() {
             {movies.map((movie) => (
               <SwiperSlide key={movie.id}>
                 <div className="relative">
-                  <Link to={"/movies/55"}>
+                  <Link to={`/movies/${movie.id}`}>
                     <img
                       className="w-full cursor-pointer max-h-200 sm:max-h-115 md:h-87 xl:h-120 object-cover"
                       src={`${BaseUrlImage}/w500${movie.poster_path}`}

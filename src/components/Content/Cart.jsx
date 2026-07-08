@@ -1,22 +1,23 @@
 import { Link } from "react-router-dom";
+import { BaseUrlImage} from "../../data/data";
 
 
-
-function Cart({address , name , rate}) {
+function Cart({movie}) {
 
   return (
     <>
 
-    <Link to={"/movies/57"}>
+    <Link to={`/movies/${movie.id}`}>
           <div className="border-2   relative rounded-sm overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300">
 
         <img
-          src={address}
-          className="object-cover aspect-2/3 opacity-100 group-hover:opacity-70"
+          src={`${BaseUrlImage}/w500${movie.poster_path}`}
+          className="imgCart"
+          alt={movie.title}
         />
-        <div className="absolute lg:text-lg w-full h-full text-xs  group-hover:top-2 transition-all duration-400 left-1 ">
-          <h1>{name}</h1>
-          <span>{rate} /10 ⭐</span>
+        <div className="nameRate">
+          <h1>{movie.title}</h1>
+          <span>{movie.vote_average.toFixed(1)} /10 ⭐</span>
         </div>
 
       </div>
