@@ -21,14 +21,17 @@ function Movie() {
 
 
   return (
-    <div className="text-4xl container mx-auto   text-white min-h-screen  ">
+    <div className="text-4xl container text-white min-h-screen  mx-auto">
 
       {
         movie ?
-        <div>
-          <h1 className="text-3xl font-bold mb-4">{movie.title}</h1>
+        <div className="flex flex-col items-center justify-center gap-4 ">
+          <h1 className="text-3xl font-bold mb-4 mt-5 ">{movie.title} 🎥</h1>
           <img src={`${BaseUrlImage}/w780${movie.poster_path}`} alt={movie.title} />
-          <p className="text-xl">{movie.overview}</p>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full py-2 px-4 rounded">
+            Add to Favorite
+          </button>
+          <p className="text-xl bg-gray-100 rounded-3xl p-10 m-10 text-gray-950 font-bold font-sans">✔️summary : <br/>{movie.overview}</p>
         </div> : "Movie not found"
       }
 

@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 
 function TickerTitle({ text, className = "", speed = 40 }) {
-  // speed = پیکسل بر ثانیه (سرعت ثابت برای همه، مستقل از طول متن)
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -18,7 +17,6 @@ function TickerTitle({ text, className = "", speed = 40 }) {
 
       if (textWidth > containerWidth) {
         setIsOverflowing(true);
-        // مدت زمان بر اساس عرض متن، تا سرعت حرکت همه‌ی کارت‌ها یکسان باشه
         setDuration(textWidth / speed);
       } else {
         setIsOverflowing(false);
