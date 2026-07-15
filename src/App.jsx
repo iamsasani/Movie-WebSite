@@ -9,6 +9,8 @@ import Nav from './components/Header/Nav'
 import Genre from './pages/Genre'
 import Movie from './pages/Movie'
 import ScrollToTop from './components/ScrollToTop'
+import Login from './pages/Login'
+import  { Toaster } from 'react-hot-toast';
 
 function App() {
 
@@ -24,9 +26,11 @@ function App() {
             <Route path='/movies' element={<Movies/>}/>
             <Route path='/movies/:id' element={<Movie/>}/>
             <Route path='/genre' element={<Genre/>}/>
+            <Route path='/login' element={<Login/>}/>
             <Route path="*"/>
         </Routes>
         <Footer/>
+        <Toaster />
         </MovieContextProvider>
       </Router>
     </div>

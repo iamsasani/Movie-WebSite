@@ -1,7 +1,9 @@
 import { faBell, faList, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+
+import { UserContext } from "../../Context/Context";
 
 function Nav() {
   const [showMenu, setShowMenu] = useState(false);
@@ -55,6 +57,8 @@ function Nav() {
   function handleMenu() {
     setShowMenu((prev) => !prev);
   }
+
+  const { user } = useContext(UserContext);
   return (
     <nav ref={menuRef}>
       <div className="flex px-2 justify-center text-xs lg:text-[1rem] xl:text-[1.5rem] items-center text-slate-300 uppercase">
@@ -75,19 +79,37 @@ function Nav() {
               </li>
             ))}
           </ul>
-
           <div className="mx-auto md:mr-0 md:ml-auto flex  gap-4  items-center  text-2xl md:text-xs lg:text-[1rem] xl:text-[1.5rem]">
-            <button className="cursor-pointer  text-slate-100  ">Login</button>
-
-            <button className="cursor-pointer bg-green-700 rounded-xl xl:px-4 p-1 px-2 hover:bg-green-600 text-slate-100   ">
-              SignUp
-            </button>
-            <span className="hidden md:block">
-              <FontAwesomeIcon
-                className="hover:text-red-400 cursor-pointer"
-                icon={faBell}
-              />
-            </span>
+            {user ? (
+              <div>{user.name}</div>
+            ) : (
+              <ul className="mx-auto md:mr-0 md:ml-auto flex  gap-4  items-center  text-2xl md:text-xs lg:text-[1rem] xl:text-[1.5rem]">
+                <li>
+                  <NavLink
+                    to="/login"
+                    className="cursor-pointer  text-slate-100  "
+                  >
+                    Login
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/signup"
+                    className="cursor-pointer bg-green-700 rounded-xl xl:px-4 p-1 px-2 hover:bg-green-600 text-slate-100   "
+                  >
+                    SignUp
+                  </NavLink>
+                </li>
+                <li>
+                  <span className="hidden md:block">
+                    <FontAwesomeIcon
+                      className="hover:text-red-400 cursor-pointer"
+                      icon={faBell}
+                    />
+                  </span>
+                </li>
+              </ul>
+            )}
           </div>
           <div className="md:hidden mr-1 text-4xl " onClick={handleMenu}>
             <FontAwesomeIcon icon={faList} />
