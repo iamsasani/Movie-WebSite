@@ -11,6 +11,7 @@ import Movie from './pages/Movie'
 import ScrollToTop from './components/ScrollToTop'
 import Login from './pages/Login'
 import  { Toaster } from 'react-hot-toast';
+import UserProvider from './Context/UserContext'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
   return (
     <div className="bg-linear-to-r from-slate-900/60 via-black to-slate-900/60 ">
       <Router >
+        <UserProvider>
         <MovieContextProvider>
           <ScrollToTop/>
           <Nav/>
@@ -32,6 +34,7 @@ function App() {
         <Footer/>
         <Toaster />
         </MovieContextProvider>
+      </UserProvider>
       </Router>
     </div>
   )

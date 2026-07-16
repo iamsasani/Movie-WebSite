@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { UserContext } from "../Context/Context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Login() {
   function handleLogin(e) {
@@ -9,33 +11,50 @@ function Login() {
     login(username.value, password.value);
   }
 
-
-  const {login , session} =useContext(UserContext);
+  const { login } = useContext(UserContext);
   return (
-    <div className="min-h-screen text-white container mx-auto flex  justify-center">
-      <div>
-        <p>{session}</p>
+    <div
+      className="min-h-screen bg-[url(./public/bg.jpg)] bg-no-repeat mt-4 rounded-md
+     text-white container mx-auto flex  justify-center"
+    >
+      <div className="mt-100 xl:mt-50  xl:text-3xl ">
+
+        <div className="bg-[url(./public/bg.jpg)] h-50 xl:h-80 bg-cover" ></div>
+
+
+        <div className="bg-gray-200 px-15 py-5 shadow-lg shadow-gray-800/50">
+        <h1 className="text-2xl mb-2 text-black font-bold">Login</h1>
         <form
-          className="flex flex-col mt-100 items-center justify-center gap-4"
+          className="flex flex-col items-center justify-center gap-4"
           action=""
           onSubmit={handleLogin}
         >
+          <div className="rounded-xl bg-rose-400 px-3">
+          <label ><FontAwesomeIcon  icon={faUser}/></label>
           <input
-            className="bg-gray-200 text-gray-900 placeholder:text-gray-500 border-none p-2 rounded-sm  focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="text-gray-900 placeholder:text-gray-200   border-none p-2 rounded-sm  focus:outline-none  focus:ring-blue-500"
             type="text"
             placeholder="Username"
             name="username"
           />
+
+          </div>
+           <div className="rounded-xl bg-rose-400 px-3">
+            <label ><FontAwesomeIcon  icon={faLock}/></label>
           <input
-            className="bg-gray-200 text-gray-900 placeholder:text-gray-500 border-none p-2 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className=" text-gray-900 placeholder:text-gray-200   border-none p-2 rounded-sm focus:outline-none  focus:ring-blue-500"
             type="password"
             placeholder="Password"
             name="password"
           />
-          <button type="submit" className="btn btn-primary">
-            Submit
+          </div>
+          <button type="submit" className="btn btn-primary cursor-pointer bg-purple-500 w-full py-1 rounded-sm shadow ">
+            Login
           </button>
         </form>
+        <span className="text-blue-600  text-sm xl:text-lg cursor-pointer block mt-5">Create Account</span>
+
+        </div>
       </div>
     </div>
   );
