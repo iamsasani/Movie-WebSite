@@ -1,9 +1,10 @@
-import { faBell, faList, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect, useRef, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { UserContext } from "../../Context/Context";
+import SearchBox from "./SearchBox";
 
 function Nav() {
   const [showMenu, setShowMenu] = useState(false);
@@ -58,7 +59,7 @@ function Nav() {
     setShowMenu((prev) => !prev);
   }
 
-  const { user , logOut } = useContext(UserContext);
+  const { user, logOut } = useContext(UserContext);
   return (
     <nav ref={menuRef}>
       <div className="flex px-2 justify-center text-xs lg:text-[1rem] xl:text-[1.5rem] items-center text-slate-300 uppercase">
@@ -82,8 +83,13 @@ function Nav() {
           <div className="mx-auto md:mr-0 md:ml-auto flex  gap-4  items-center  text-2xl md:text-xs lg:text-[1rem] xl:text-[1.5rem]">
             {user ? (
               <>
-              <div>{user.name}</div>
-              <button onClick={logOut} className="bg-red-600 cursor-pointer px-2 py-1 rounded-md">LogOut</button>
+                <div>{user.name}</div>
+                <button
+                  onClick={logOut}
+                  className="bg-red-600 cursor-pointer px-2 py-1 rounded-md"
+                >
+                  LogOut
+                </button>
               </>
             ) : (
               <ul className="mx-auto md:mr-0 md:ml-auto flex  gap-4  items-center  text-2xl md:text-xs lg:text-[1rem] xl:text-[1.5rem]">
@@ -119,18 +125,10 @@ function Nav() {
           </div>
         </div>
       </div>
-      <div className="container mx-auto mt-5 ">
-        <div className="bg-gray-300 hidden  text-black justify-between  md:flex mx-1  py-3 px-6  flex-1  rounded-xl ">
-          <input
-            type="text"
-            placeholder="search movies..."
-            className="mr-5 text-black placeholder:text-gray-800 w-full focus:outline-none"
-          />
-          <button className="cursor-pointer text-xl ">
-            <FontAwesomeIcon icon={faSearch} />
-          </button>
-        </div>
-      </div>
+
+      {/* search box */}
+
+      <SearchBox />
 
       <div
         className={`md:hidden text-gray-300 text-center mt-5 transition-all overflow-hidden duration-500 ${showMenu ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}

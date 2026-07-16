@@ -14,15 +14,16 @@ function Login() {
   const { login } = useContext(UserContext);
   return (
     <div
-      className="min-h-screen bg-[url(./public/bg.jpg)] bg-no-repeat mt-4 rounded-md
+      className="min-h-screen bg-[url(https://images.unsplash.com/32/Mc8kW4x9Q3aRR3RkP5Im_IMG_4417.jpg?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-no-repeat bg-cover bg-center mt-4 rounded-md
      text-white container mx-auto flex  justify-center"
     >
-      <div className="mt-100 xl:mt-50  xl:text-3xl ">
+      <div className="mt-80 xl:mt-60  xl:text-3xl ">
+        <div className="shadow-xl shadow-gray-800/50">
 
-        <div className="bg-[url(./public/bg.jpg)] h-50 xl:h-80 bg-cover" ></div>
+        <div className="bg-[url(https://images.unsplash.com/photo-1659885785824-3e72856b8fef?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] h-60 xl:h-80 bg-cover bg-center" ></div>
 
 
-        <div className="bg-gray-200 px-15 py-5 shadow-lg shadow-gray-800/50">
+        <div className="bg-gray-200 px-15 py-5 ">
         <h1 className="text-2xl mb-2 text-black font-bold">Login</h1>
         <form
           className="flex flex-col items-center justify-center gap-4"
@@ -54,6 +55,7 @@ function Login() {
         </form>
         <span className="text-blue-600  text-sm xl:text-lg cursor-pointer block mt-5">Create Account</span>
 
+        </div>
         </div>
       </div>
     </div>

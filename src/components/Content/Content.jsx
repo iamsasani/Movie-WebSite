@@ -21,7 +21,7 @@ function Content() {
         {/* movies list */}
         <div className="md:flex gap-6 border-b  pb-2 items-baseline pt-15  mb-10 ">
           <h2 className="text-2xl  xl:text-4xl mb-4">Movies</h2>
-          <ul className="md:flex text-xl xl:text-2xl gap-10 items-baseline text-yellow-200">
+          <ul className="mb-4 flex text-xl xl:text-2xl gap-10 items-baseline text-yellow-200">
             <li
               className={`cursor-pointer transition duration-400 ${movieType === "movie/top_rated" ? "text-yellow-400 text-2xl xl:text-3xl " : ""}`}
             >
@@ -99,7 +99,7 @@ function Content() {
         {/* tv series list */}
         <div className="md:flex gap-4 border-b items-baseline pt-15  mb-10 ">
           <h2 className="text-2xl  xl:text-3xl mb-4">TV Series</h2>
-          <ul className="md:flex  gap-10 items-baseline text-yellow-200">
+          <ul className="mb-5 flex  gap-10 items-baseline text-yellow-200">
             {tvSeriesList.map((item) => (
               <li
                 key={item.id}
