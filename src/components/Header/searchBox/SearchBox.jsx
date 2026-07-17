@@ -2,7 +2,10 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { ApiKey, BaseUrlMovie } from "../../data/data";
+import { ApiKey, BaseUrlMovie } from "../../../data/data";
+import TV from "./items/TV";
+import Movie from "./items/Movie";
+import Person from "./items/Person";
 
 function SearchBox() {
   const [query, setQuery] = useState("");
@@ -28,6 +31,17 @@ function SearchBox() {
     };
   }, [query]);
 
+  function showItem(item) {
+    switch (item.media_type) {
+      case "tv":
+        return <TV key={item.id} item={item} />;
+      case "movie":
+        return <Movie key={item.id} item={item} />;
+      case "person":
+        return <Person key={item.id} item={item} />;
+    }
+  }
+
   return (
     <div>
       <div className="container mx-auto mt-5 relative ">
@@ -45,18 +59,16 @@ function SearchBox() {
           </button>
         </div>
         <div
-          className={`bg-gray-300   absolute z-10 border border-t-0 w-full rounded-md overflow-hidden transition-all duration-300 ${searchResult.length && query ? "max-h-50 overflow-y-auto" : "h-0 opacity-0"}`}
+          className={`flex flex-col gap-2 bg-gray-300  p-2  absolute z-10 border border-t-0 w-full rounded-md overflow-hidden transition-all duration-300 ${searchResult.length && query ? "max-h-70 overflow-y-auto opacity-95" : "h-0 opacity-0"}`}
         >
-          <ul>
-            {searchResult.map((item) => (
-              <li
-                key={item.id}
-                className="p-2 hover:bg-gray-100 cursor-pointer text-black"
-              >
-                {item.title || item.name}
-              </li>
-            ))}
-          </ul>
+          {searchResult.map((item) => (
+            <div
+              className="border-b-2 border-slate-500 pb-2 "
+              onClick={() => setSearchResult([])}
+            >
+              {showItem(item)}
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -64,4 +76,3 @@ function SearchBox() {
 }
 
 export default SearchBox;
-

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { UserContext } from "../../Context/Context";
-import SearchBox from "./SearchBox";
+import SearchBox from "./searchBox/SearchBox";
 
 function Nav() {
   const [showMenu, setShowMenu] = useState(false);

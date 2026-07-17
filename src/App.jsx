@@ -12,6 +12,8 @@ import ScrollToTop from './components/ScrollToTop'
 import Login from './pages/Login'
 import  { Toaster } from 'react-hot-toast';
 import UserProvider from './Context/UserContext'
+import People from './pages/People'
+import TV from './components/Header/searchBox/items/TV'
 
 function App() {
 
@@ -29,6 +31,8 @@ function App() {
             <Route path='/movies/:id' element={<Movie/>}/>
             <Route path='/genre' element={<Genre/>}/>
             <Route path='/login' element={<Login/>}/>
+            <Route path='/people/:id' element={<People/>}/>
+            <Route path='/tv/:id' element={<TV/>}/>
             <Route path="*"/>
         </Routes>
         <Footer/>
