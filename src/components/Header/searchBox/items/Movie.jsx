@@ -12,7 +12,7 @@ function Movie({ item }) {
             alt=""
             className=" w-12 h-12 rounded-lg"
           />
-        ) : ( 
+        ) : (
           <img className="w-12 aspect-square" src="./public/movie_icon.png" />
         )}
         <p>{item.title}</p>

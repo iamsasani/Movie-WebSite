@@ -49,6 +49,11 @@ function Nav() {
       path: "/movies",
       text: "movies",
     },
+    {
+      id: 5,
+      path: "/profile",
+      text: "profile",
+    },
   ];
 
   function activeClass({ isActive }) {

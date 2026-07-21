@@ -13,7 +13,8 @@ import Login from './pages/Login'
 import  { Toaster } from 'react-hot-toast';
 import UserProvider from './Context/UserContext'
 import People from './pages/People'
-import TV from './components/Header/searchBox/items/TV'
+import TV from './pages/TV'
+import Profile from './pages/Profile'
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
             <Route path='/login' element={<Login/>}/>
             <Route path='/people/:id' element={<People/>}/>
             <Route path='/tv/:id' element={<TV/>}/>
+            <Route path='/profile' element={<Profile/>}/>
             <Route path="*"/>
         </Routes>
         <Footer/>

@@ -3,24 +3,31 @@ import { UserContext } from "./Context";
 import axios from "axios";
 import { ApiKey, BaseUrlMovie } from "../data/data";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import {  useLocation, useNavigate } from "react-router-dom";
 
 export default function UserProvider({ children }) {
   const [user, setUser] = useState(null);
   const [session, setSession] = useState(() => localStorage.getItem("session"));
   const navigate = useNavigate();
+  const location = useLocation();
 
-  useEffect(() => {
-    if (session) {
-      async function getUserData() {
-        const { data } = await axios.get(
-          `${BaseUrlMovie}/account?api_key=${ApiKey}&session_id=${session}`,
-        );
-        setUser(data);
+useEffect(() => {
+  if (session) {
+    localStorage.setItem("session", session);
+
+    async function getUserData() {
+      const { data } = await axios.get(
+        `${BaseUrlMovie}/account?api_key=${ApiKey}&session_id=${session}`,
+      );
+      setUser(data);
+
+      if (location.pathname === "/login") {
+        navigate("/profile", { replace: true });
       }
-      getUserData();
     }
-  }, [session]);
+    getUserData();
+  }
+}, [session]);
 
   async function login(username, password) {
     try {
@@ -42,10 +49,7 @@ export default function UserProvider({ children }) {
         },
       );
       setSession(session.data.session_id);
-      localStorage.setItem("session", session.data.session_id);
-      navigate("/", {
-        replace: true,
-      });
+      
     } catch {
       toast.error("invalid username and password!");
     }

@@ -18,8 +18,6 @@ function Movie() {
     }
     loadMovie();
   }, [id]);
-  
-
   const {login ,user , session} = useContext(UserContext);
 
  async function handleAddToFavorite(){
@@ -38,6 +36,7 @@ function Movie() {
         movie ?
         <div className="flex flex-col items-center justify-center gap-4 ">
           <h1 className="text-3xl font-bold mb-4 mt-5 ">{movie.title} 🎥</h1>
+          <h3>{movie.release_date?.split('-')[0]}</h3>
           <img src={`${BaseUrlImage}/w780${movie.poster_path}`} alt={movie.title} />
 
           {
