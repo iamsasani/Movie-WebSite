@@ -108,7 +108,7 @@ function Nav() {
                 </li>
                 <li>
                   <NavLink
-                    to="/signup"
+                    to="/signUp"
                     className="cursor-pointer bg-green-700 rounded-xl xl:px-4 p-1 px-2 hover:bg-green-600 text-slate-100   "
                   >
                     SignUp

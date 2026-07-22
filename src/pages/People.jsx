@@ -18,7 +18,7 @@ function People() {
     personalDetail();
   }, [id]);
 
-
+console.log(detail)
 
   console.log(detail);
   return (
@@ -63,7 +63,7 @@ function People() {
               <div>
                 popularity :{" "}
                 {detail.popularity ? (
-                  <span className="text-yellow-300">{detail.popularity.toFixed(1)}</span>
+                  <span className="text-yellow-300"> {detail.popularity.toFixed(1)}</span>
                 ) : (
                   <span className="text-red-600">Not Available</span>
                 )}
@@ -71,13 +71,17 @@ function People() {
             </div>
           </div>
           <div  className={`${showFullBio ? "line-clamp-none" : "line-clamp-4"}  text-gray-200 mt-10`}>
-            {detail.biography}
+           <span className="text-red-400">Biography :</span> {detail.biography}
           </div>
-          <button className="px-2 mt-2 py-1 bg-blue-500 rounded-xl text-sm text-white" onClick={() => setShowFullBio(!showFullBio)}>
+          {
+            detail.biography ? (<button className="px-2 mt-2 py-1 bg-blue-500 rounded-xl text-sm text-white" onClick={() => setShowFullBio(!showFullBio)}>
            {
             showFullBio ? "Less Info" : "More Info"
            }
-          </button>
+          </button>) : (
+            ""
+          )
+          }
         </>
       ) : (
         <div className="text-4xl text-red-600">

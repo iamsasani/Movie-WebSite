@@ -7,7 +7,7 @@ function TvCart({tv}) {
 
   return (
     <>
-      <NavLink to={`/movies/${tv.id}`}>
+      <NavLink to={`/TV/${tv.id}`}>
       <div className="border-2   relative rounded-sm overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300">
 
         <img

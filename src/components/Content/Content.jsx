@@ -1,13 +1,14 @@
-import Cart from "./Cart";
+
 import { Context } from "../../data/Context";
 import "swiper/css/autoplay";
 import "swiper/css";
 import { SwiperSlide, Swiper } from "swiper/react";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { NavLink } from "react-router-dom";
 import TvCart from "./TvCart";
 import { useContext } from "react";
+import CartMovie from "./CartMovie";
 
 function Content() {
   const { tvSeriesList, movies, movieType, setMovieType, Tv, tvType, setTvType } = useContext(Context);
@@ -87,7 +88,7 @@ function Content() {
         >
           {movies.map((movie) => (
             <SwiperSlide key={movie.id}>
-              <Cart
+              <CartMovie
                 key={movie.id}
                 movie={movie}
               />
@@ -143,41 +144,6 @@ function Content() {
           ))}
         </Swiper>
 
-          {/* suggestions list */}
-        <div className="md:flex gap-4 border-b items-baseline pt-15  mb-10 ">
-          <h2 className="text-2xl  xl:text-3xl mb-4">Suggestions 🌟</h2>
-        </div>
-        <Swiper
-          breakpoints={{
-            320: {
-              slidesPerView: 4,
-              spaceBetween: 20,
-            },
-            768: {
-              slidesPerView: 5,
-              spaceBetween: 20,
-            },
-            1024: {
-              slidesPerView: 6,
-              spaceBetween: 20,
-            },
-          }}
-          centeredSlides={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination]}
-          className="mySwiper"
-        >
-          {movies.map((movie) => (
-            <SwiperSlide>
-              <Cart
-                key={movie.id}
-                movie={movie}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
       </main>
     </div>
   );

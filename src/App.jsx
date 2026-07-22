@@ -15,6 +15,7 @@ import UserProvider from './Context/UserContext'
 import People from './pages/People'
 import TV from './pages/TV'
 import Profile from './pages/Profile'
+import Register from './pages/Register'
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
             <Route path='/movies/:id' element={<Movie/>}/>
             <Route path='/genre' element={<Genre/>}/>
             <Route path='/login' element={<Login/>}/>
+            <Route path='/signUp' element={<Register/>}/>
             <Route path='/people/:id' element={<People/>}/>
             <Route path='/tv/:id' element={<TV/>}/>
             <Route path='/profile' element={<Profile/>}/>

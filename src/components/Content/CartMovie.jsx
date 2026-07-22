@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { BaseUrlImage} from "../../data/data";
 
 
-function Cart({movie}) {
+function CartMovie({movie}) {
 
   return (
     <>
@@ -28,4 +28,4 @@ function Cart({movie}) {
   );
 }
 
-export default Cart;
+export default CartMovie;

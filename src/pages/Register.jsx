@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 
-function Login() {
+function Register() {
   function handleLogin(e) {
     e.preventDefault();
     const { username, password } = e.target.elements;
@@ -25,7 +25,7 @@ function Login() {
 
 
         <div className="bg-gray-200 px-15 py-5 ">
-        <h1 className="text-2xl mb-2 text-black font-bold">Login</h1>
+        <h1 className="text-2xl mb-2 text-black font-bold">Sign Up</h1>
         <form
           className="flex flex-col items-center justify-center gap-4"
           action=""
@@ -54,7 +54,7 @@ function Login() {
             Login
           </button>
         </form>
-        <NavLink to={"/signUp"}  className="text-blue-600  text-sm xl:text-lg cursor-pointer block mt-5">Create Account</NavLink>
+        <NavLink to={"/login"}  className="text-blue-600  text-sm xl:text-lg cursor-pointer block mt-5">Have Account?</NavLink>
 
         </div>
         </div>
@@ -63,4 +63,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
