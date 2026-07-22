@@ -20,7 +20,7 @@ function Content() {
       <main className="text-white  container mx-auto min-h-screen px-3 sm:p-0">
 
         {/* movies list */}
-        <div className="md:flex gap-6 border-b  pb-2 items-baseline pt-15  mb-10 ">
+        <div className="md:flex gap-6  pb-2 items-baseline pt-15  mb-10 ">
           <h2 className="text-2xl  xl:text-4xl mb-4">Movies</h2>
           <ul className="mb-4 flex text-xl xl:text-2xl gap-10 items-baseline text-yellow-200">
             <li
@@ -31,7 +31,9 @@ function Content() {
                 onClick={(e) => {
                   e.preventDefault();
                   setMovieType("movie/top_rated");
+                  
                 }}
+                className=""
               >
                 Top Rated
               </a>
@@ -98,7 +100,7 @@ function Content() {
 
 
         {/* tv series list */}
-        <div className="md:flex gap-4 border-b items-baseline pt-15  mb-10 ">
+        <div className="md:flex gap-4  items-baseline pt-15  mb-10 ">
           <h2 className="text-2xl  xl:text-3xl mb-4">TV Series</h2>
           <ul className="mb-5 flex  gap-10 items-baseline text-yellow-200">
             {tvSeriesList.map((item) => (

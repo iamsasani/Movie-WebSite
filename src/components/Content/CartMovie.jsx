@@ -8,7 +8,7 @@ function CartMovie({movie}) {
     <>
 
     <Link to={`/movies/${movie.id}`}>
-          <div className="border-2   relative rounded-sm overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300">
+          <div className="  relative rounded-sm overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300">
 
         <img
           src={`${BaseUrlImage}/w500${movie.poster_path}`}

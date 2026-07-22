@@ -40,9 +40,10 @@ const MovieContextProvider = (props) => {
     loadTV();
   }, [tvType]);
 
+  // for login and sign up page
+  const [showPass , setShowPass ] = useState(false)
 
-
-  const contextValue = { tvSeriesList, movies, setMovies, movieType, setMovieType, Tv, setTv, tvType, setTvType };
+  const contextValue = { tvSeriesList, movies, setMovies, movieType, setMovieType, Tv, setTv, tvType, setTvType , showPass , setShowPass };
   return (
     <Context.Provider value={contextValue}>{props.children}</Context.Provider>
   );

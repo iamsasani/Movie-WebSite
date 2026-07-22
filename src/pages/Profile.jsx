@@ -22,7 +22,7 @@ function Profile() {
 
   return (
     <div className="min-h-screen text-white px-6 py-10">
-      <div className="max-w-3xl mx-auto rounded-xl bg-slate-900/70 p-8 shadow-lg">
+      <div className="max-w-3xl mx-auto rounded-xl bg-slate-900/90 p-8 shadow-lg">
         <h1 className="text-3xl font-semibold">{user.name || user.username}</h1>
         <p className="mt-2 text-slate-300">Welcome back to your movie profile.</p>
 

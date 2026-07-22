@@ -39,12 +39,6 @@ function Nav() {
       text: "home",
     },
     {
-      id: 2,
-      path: "/genre",
-      text: "genre",
-    },
-
-    {
       id: 4,
       path: "/movies",
       text: "movies",
