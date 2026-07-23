@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 function Footer() {
   return (
     <footer className="bg-gray-900/60 ">
-      <div className="justify-center items-center xl:flex xl:gap-10  xl:px-80  text-white p-8 container mx-auto xl:mt-20">
-        <div className="flex flex-col justify-center items-center xl:border-r-2 xl:border-gray-400 p-10">
+      <div className="justify-center items-center lg:flex lg:gap-10  lg:px-40  xl:px-70  text-white p-8 container mx-auto xl:mt-20">
+        <div className="flex flex-col justify-center items-center lg:border-r-2 lg:border-gray-400 p-10">
           <h1  className="md:mr-10 text-2xl mb-5 lg:text-3xl font-bold flex items-baseline">
             <NavLink  to={"/"} onClick={() => window.scrollTo({top : 0 , behavior : 'smooth'})}>
 
@@ -20,7 +20,7 @@ function Footer() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-2 xl:gap-10 xl:flex-row  mt-10 items-center justify-center text-center">
+        <div className="flex flex-col gap-2 md:gap-10 md:flex-row  mt-10 items-center justify-center text-center">
           <div className="">
           <NavLink  to={"/"}>
           Home

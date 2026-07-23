@@ -21,18 +21,18 @@ function Login() {
       className="min-h-screen  mt-4 rounded-md
      text-white container mx-auto flex items-center justify-center"
     >
-      <div className=" xl:text-3xl  ">
+      <div className="   ">
         <div className="shadow-xl  shadow-gray-800/50">
-          <div className="rounded-t-xl bg-[url(https://images.unsplash.com/photo-1659885785824-3e72856b8fef?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] h-60 xl:h-80 bg-cover bg-center"></div>
+          <div className="rounded-t-xl bg-[url(https://images.unsplash.com/photo-1659885785824-3e72856b8fef?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] h-60  bg-cover bg-center"></div>
 
           <div className="bg-gray-200 rounded-b-xl px-15 py-5 ">
-            <h1 className="text-2xl mb-2 text-black font-bold">Login</h1>
+            <h1 className="text-2xl mb-5 text-black font-bold">Login</h1>
             <form
-              className="flex flex-col items-center justify-center gap-4"
+              className="flex flex-col items-center justify-center gap-4 text-sm"
               action=""
               onSubmit={handleLogin}
             >
-              <div className="rounded-xl w-66 bg-rose-400 px-3">
+              <div className="rounded-xl flex w-66 items-center bg-rose-400 px-3">
                 <label>
                   <FontAwesomeIcon icon={faUser} />
                 </label>
@@ -43,7 +43,9 @@ function Login() {
                   name="username"
                 />
               </div>
-              <div className="rounded-xl  bg-rose-400 px-3 w-66">
+              <div className="rounded-xl flex items-center w-66  justify-between bg-rose-400 px-3 ">
+                <div>
+
                 <label>
                   <FontAwesomeIcon icon={faLock} />
                 </label>
@@ -54,8 +56,9 @@ function Login() {
                   name="password"
                   required
                 />
-                <label>
-                  <FontAwesomeIcon  onClick={() => setShowPass(!showPass)} icon={faEye} />
+                </div>
+                <label className="text-right">
+                  <FontAwesomeIcon   onClick={() => setShowPass(!showPass)} icon={faEye} />
                 </label>
               </div>
               <button

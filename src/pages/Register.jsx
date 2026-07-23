@@ -25,18 +25,18 @@ function Register() {
       className="min-h-screen  mt-4 rounded-md
      text-white container mx-auto flex items-center justify-center"
     >
-      <div className=" xl:text-3xl  ">
+      <div className="text-sm ">
         <div className="shadow-xl  shadow-gray-800/50">
           <div className="rounded-t-xl bg-[url(https://images.unsplash.com/photo-1659885785824-3e72856b8fef?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] h-60 xl:h-80 bg-cover bg-center"></div>
 
           <div className="bg-gray-200 rounded-b-xl px-15 py-5 ">
-            <h1 className="text-2xl mb-2 text-black font-bold">Sing Up</h1>
+            <h1 className="text-2xl mb-5 text-black font-bold">Sing Up</h1>
             <form
               className="flex flex-col items-center justify-center gap-4"
               action=""
               onSubmit={handleSignUp}
             >
-              <div className="rounded-xl bg-rose-400 px-3 w-66">
+              <div className="rounded-xl flex items-center bg-rose-400 px-3 w-66">
                 <label>
                   <FontAwesomeIcon icon={faUser} />
                 </label>
@@ -48,7 +48,9 @@ function Register() {
                   required
                 />
               </div>
-              <div className="rounded-xl bg-rose-400 px-3 w-66">
+              <div className="rounded-xl flex justify-between items-center bg-rose-400 px-3 w-66">
+
+                <div>
                 <label>
                   <FontAwesomeIcon icon={faLock} />
                 </label>
@@ -63,11 +65,16 @@ function Register() {
                   title="Password must be at least 6 characters and include both uppercase and lowercase letters"
                   maxLength={20}
                 />
+                </div>
                 <label>
                   <FontAwesomeIcon  onClick={() => setShowPass(!showPass)} icon={faEye} />
                 </label>
               </div>
-              <div className="rounded-xl bg-rose-400 px-3 w-66">
+
+              
+              <div className="rounded-xl bg-rose-400 flex items-center justify-between px-3 w-66">
+
+                <div>
                 <label>
                   <FontAwesomeIcon icon={faLock} />
                 </label>
@@ -82,11 +89,13 @@ function Register() {
                   title="Password must be at least 6 characters and include both uppercase and lowercase letters"
                   maxLength={20}
                 />
+
+                </div>
                 <label>
                   <FontAwesomeIcon onClick={() => setShowConfirmPass(!showConfirmPass)} icon={faEye} />
                 </label>
               </div>
-              <div className="rounded-xl bg-rose-400 px-3 w-66">
+              <div className="rounded-xl flex items-center bg-rose-400 px-3 w-66">
                 <label>
                   <FontAwesomeIcon icon={faEnvelope} />
                 </label>
