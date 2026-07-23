@@ -22,9 +22,9 @@ function Content() {
         {/* movies list */}
         <div className="md:flex gap-6  pb-2 items-baseline pt-15  mb-10 ">
           <h2 className="text-2xl  xl:text-4xl mb-4">Movies</h2>
-          <ul className="mb-4 flex text-xl xl:text-2xl gap-10 items-baseline text-yellow-200">
+          <ul className="mb-4 flex text-sm xl:text-2xl gap-10 items-baseline text-yellow-200">
             <li
-              className={`cursor-pointer transition duration-400 ${movieType === "movie/top_rated" ? "text-yellow-400 text-2xl xl:text-3xl " : ""}`}
+              className={`cursor-pointer transition duration-400 ${movieType === "movie/top_rated" ? "text-yellow-400 text-xl xl:text-3xl " : ""}`}
             >
               <a
                 href="#"
@@ -106,7 +106,7 @@ function Content() {
             {tvSeriesList.map((item) => (
               <li
                 key={item.id}
-                className={`cursor-pointer transition duration-400 ${tvType === item.path ? "text-yellow-400 block text-2xl xl:text-3xl" : "text-yellow-200 text-xl xl:text-2xl"}`}
+                className={`cursor-pointer transition duration-400 ${tvType === item.path ? "text-yellow-400 block text-xl xl:text-3xl" : "text-yellow-200 text-sm xl:text-2xl"}`}
                 onClick={() => setTvType(item.path)}
               >
                 <NavLink>{item.text}</NavLink>
