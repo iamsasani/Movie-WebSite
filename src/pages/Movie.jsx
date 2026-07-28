@@ -4,10 +4,20 @@ import { useParams } from "react-router-dom";
 import { ApiKey, BaseUrlImage, BaseUrlMovie } from "../data/data";
 import { UserContext } from "../Context/Context";
 import toast from "react-hot-toast";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
+import {
+  faHeart,
+  faHeartBroken,
+  faShareNodes,
+} from "@fortawesome/free-solid-svg-icons";
+import { faImdb } from "@fortawesome/free-brands-svg-icons";
 
 function Movie() {
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     async function loadMovie() {
@@ -18,40 +28,124 @@ function Movie() {
     }
     loadMovie();
   }, [id]);
-  const {login ,user , session} = useContext(UserContext);
+  const { user, session } = useContext(UserContext);
 
- async function handleAddToFavorite(){
-  const result =await axios.post(`${BaseUrlMovie}/account/${user.id}/favorite?api_key=${ApiKey}&session_id=${session}` , {
-    media_type : "movie",
-    media_id : movie.id,
-    favorite:true,
-  })
-  toast.success(`${movie.title} has been added to your favorite`)
- }
+  async function handleAddToFavorite() {
+    const newFavoriteStatus = !isFavorite;
+
+    try {
+      await axios.post(
+        `${BaseUrlMovie}/account/${user.id}/favorite?api_key=${ApiKey}&session_id=${session}`,
+        {
+          media_type: "movie",
+          media_id: movie.id,
+          favorite: newFavoriteStatus,
+        },
+      );
+      setIsFavorite(newFavoriteStatus);
+
+      if (newFavoriteStatus) {
+        toast.success(`${movie.title} has been added to your favorite`);
+      } else {
+        toast.error(`${movie.title} has been removed from your favorite`);
+      }
+    } catch {
+      toast.error("there is a problem , please try again!");
+    }
+  }
 
   return (
-    <div className="text-4xl container text-white min-h-screen  mx-auto">
-
-      {
-        movie ?
+    <div className="text-4xl container text-white min-h-screen mt-10  mx-auto">
+      {movie ? (
         <div className="flex flex-col items-center justify-center gap-4 ">
-          <h1 className="text-3xl font-bold mb-4 mt-5 ">{movie.title} 🎥</h1>
-          <h3>{movie.release_date?.split('-')[0]}</h3>
-          <img src={`${BaseUrlImage}/w780${movie.poster_path}`} alt={movie.title} />
+          <div className="flex gap-10">
+            <img
+              className="w-70"
+              src={`${BaseUrlImage}/w342${movie.poster_path}`}
+              alt={movie.title}
+            />
 
-          {
-            login ? (
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold w-full py-2 px-4 rounded" onClick={handleAddToFavorite}>
-            Add to Favorite
-          </button>
-            ):(
-              <div></div>
-            )
-          }
-          <p className="text-xl bg-gray-100 rounded-3xl p-10 m-10 text-gray-950 font-bold font-sans">✔️summary : <br/>{movie.overview}</p>
-        </div> : "Movie not found"
-      }
+            <div>
+              <h1 className="text-3xl font-bold mb-4 mt-5 ">
+                {movie.title} 🎥
+              </h1>
+              <h3>{movie.release_date?.split("-")[0]}</h3>
 
+              <div className="flex gap-2 mt-10">
+                {user ? (
+                  <>
+                    {isFavorite ? (
+                      <button
+                        className=" bg-red-500 text-sm hover:bg-red-700 text-white font-bold px-4 py-2  rounded"
+                        onClick={handleAddToFavorite}
+                      >
+                        Remove from your Favorite{" "}
+                        <FontAwesomeIcon icon={faHeartBroken} />
+                      </button>
+                    ) : (
+                      <button
+                        className=" bg-blue-500 text-sm hover:bg-blue-700 text-white font-bold px-4 py-2  rounded"
+                        onClick={handleAddToFavorite}
+                      >
+                        Add to Favorite <FontAwesomeIcon icon={faHeart} />
+                      </button>
+                    )}
+                  </>
+                ) : (
+                  <div></div>
+                )}
+                <button className="bg-red-500 text-sm  hover:bg-red-700 text-white font-bold py-2 px-4  rounded">
+                  Share <FontAwesomeIcon icon={faShareNodes} />
+                </button>
+              </div>
+
+              {/* VotAverage */}
+              <div className="text-sm  flex  bg-gray-900/60 border-y-2 border-y-gray-00 mt-3">
+                <div className="py-2   px-2 flex items-center flex-col justify-center text-yellow-400">
+                  {movie.vote_average}
+                  <FontAwesomeIcon className="text-6xl " icon={faImdb} />
+                </div>
+                <div className="flex py-2 border-l-2 justify-center flex-col items-center">
+                  <div className=" top-4 text-yellow-500 font-semibold">
+                    rate this movie{" "}
+                  </div>
+                  <Stack spacing={1} className=" ">
+                    <Rating
+                      name="half-rating"
+                      sx={{
+                        "& .MuiRating-iconEmpty": {
+                          color: "white",
+                        },
+                      }}
+                      defaultValue={2.5}
+                      precision={0.5}
+                    />
+                  </Stack>
+                  
+                </div>
+              </div>
+              {/* watchList */}
+
+              <div>
+                {
+                  movie.lists
+           }
+              </div>
+
+
+            </div>
+          </div>
+
+          <p className="text-xl bg-gray-900/80 text-gray-300  rounded-3xl p-10 m-10  font-light fontSum">
+           <div className="">
+            ✔️summary :
+            </div>  <br />
+            {movie.overview}
+          </p>
+        </div>
+      ) : (
+        "Movie not found"
+      )}
     </div>
   );
 }

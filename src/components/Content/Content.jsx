@@ -24,14 +24,13 @@ function Content() {
           <h2 className="text-2xl  xl:text-4xl mb-4">Movies</h2>
           <ul className="mb-4 flex text-sm xl:text-2xl gap-10 items-baseline text-yellow-200">
             <li
-              className={`cursor-pointer transition duration-400 ${movieType === "movie/top_rated" ? "text-yellow-400 text-xl xl:text-3xl " : ""}`}
+              className={`cursor-pointer  transition duration-400 ${movieType === "movie/top_rated" ? "text-yellow-400 text-xl xl:text-3xl " : ""}`}
             >
               <a
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
                   setMovieType("movie/top_rated");
-                  
                 }}
                 className=""
               >
