@@ -101,15 +101,15 @@ function Nav() {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
+                  {/* <NavLink
                     to="/signUp"
                     className="cursor-pointer bg-green-700 rounded-xl xl:px-4 p-1 px-2 hover:bg-green-600 text-slate-100   "
-                  >
-                    {/* <a href="https://www.themoviedb.org/signup"> */}
+                  > */}
+                    <a href="https://www.themoviedb.org/signup" className="cursor-pointer bg-green-700 rounded-xl xl:px-4 p-1 px-2 hover:bg-green-600 text-slate-100 ">
 
                     SignUp
-                    {/* </a> */}
-                  </NavLink>
+                    </a>
+                  {/* </NavLink> */}
                 </li>
                 <li>
                   <span className="hidden md:block">

@@ -21,10 +21,24 @@ function Content() {
 
         {/* movies list */}
         <div className="md:flex gap-6  pb-2 items-baseline pt-15  mb-10 ">
-          <h2 className="text-2xl  xl:text-4xl mb-4">Movies</h2>
-          <ul className="mb-4 flex text-sm xl:text-2xl gap-10 items-baseline text-yellow-200">
+          <h2 className="text-2xl text-rose-500 font-bold xl:text-4xl mb-4">Movies</h2>
+          <ul className=" flex text-sm xl:text-2xl gap-5 items-baseline text-slate-400">
             <li
-              className={`cursor-pointer  transition duration-400 ${movieType === "movie/top_rated" ? "text-yellow-400 text-xl xl:text-3xl " : ""}`}
+              className={`cursor-pointer bg-gray-900/90 p-2 rounded-full  transition duration-300 ${movieType === "movie/popular" ? "text-gray-100 text-sm" : ""}`}
+            >
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMovieType("movie/popular");
+                }}
+                className=""
+              >
+                Popular
+              </a>
+            </li>
+            <li
+              className={`cursor-pointer bg-gray-900/90 p-2 rounded-full  transition duration-300 ${movieType === "movie/top_rated" ? "text-gray-100 text-sm" : ""}`}
             >
               <a
                 href="#"
@@ -38,7 +52,7 @@ function Content() {
               </a>
             </li>
             <li
-              className={`cursor-pointer transition duration-400 ${movieType === "movie/upcoming" ? "text-yellow-400 text-2xl xl:text-3xl " : ""}`}
+              className={`cursor-pointer transition bg-gray-900/90 p-2 rounded-full duration-300 ${movieType === "movie/upcoming" ? "text-gray-100 text-sm " : ""}`}
             >
               <a
                 href="#"
@@ -51,7 +65,7 @@ function Content() {
               </a>
             </li>
             <li
-              className={`cursor-pointer transition duration-400 ${movieType === "movie/now_playing" ? "text-yellow-400 text-2xl xl:text-3xl " : ""}`}
+              className={`cursor-pointer transition bg-gray-900 p-2 rounded-full duration-300 ${movieType === "movie/now_playing" ? "text-gray-100 text-sm " : ""}`}
             >
               <a
                 href="#"
@@ -100,12 +114,12 @@ function Content() {
 
         {/* tv series list */}
         <div className="md:flex gap-4  items-baseline pt-15  mb-10 ">
-          <h2 className="text-2xl  xl:text-3xl mb-4">TV Series</h2>
-          <ul className="mb-5 flex  gap-10 items-baseline text-yellow-200">
+          <h2 className="text-2xl text-rose-500 font-bold  xl:text-3xl mb-4">TV Series</h2>
+          <ul className="mb-5 flex  gap-5 items-baseline text-slate-400">
             {tvSeriesList.map((item) => (
               <li
                 key={item.id}
-                className={`cursor-pointer transition duration-400 ${tvType === item.path ? "text-yellow-400 block text-xl xl:text-3xl" : "text-yellow-200 text-sm xl:text-2xl"}`}
+                className={`cursor-pointer bg-gray-900 p-2 rounded-full transition duration-300 ${tvType === item.path ? " block text-sm text-gray-100 xl:text-3xl" : " text-sm"}`}
                 onClick={() => setTvType(item.path)}
               >
                 <NavLink>{item.text}</NavLink>

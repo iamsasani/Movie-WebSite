@@ -13,6 +13,7 @@ import {
   faShareNodes,
 } from "@fortawesome/free-solid-svg-icons";
 import { faImdb } from "@fortawesome/free-brands-svg-icons";
+import TrailerCart from "../components/Content/TrailerCart";
 
 function Movie() {
   const { id } = useParams();
@@ -76,7 +77,7 @@ function Movie() {
                   <>
                     {isFavorite ? (
                       <button
-                        className=" bg-red-500 text-sm hover:bg-red-700 text-white font-bold px-4 py-2  rounded"
+                        className=" bg-red-500 text-[9px] lg:text-sm hover:bg-red-700 text-white font-bold px-4 py-2  rounded"
                         onClick={handleAddToFavorite}
                       >
                         Remove from your Favorite{" "}
@@ -84,7 +85,7 @@ function Movie() {
                       </button>
                     ) : (
                       <button
-                        className=" bg-blue-500 text-sm hover:bg-blue-700 text-white font-bold px-4 py-2  rounded"
+                        className=" bg-blue-500 text-[9px] lg:text-sm hover:bg-blue-700  text-white font-bold px-4 py-2  rounded"
                         onClick={handleAddToFavorite}
                       >
                         Add to Favorite <FontAwesomeIcon icon={faHeart} />
@@ -94,22 +95,25 @@ function Movie() {
                 ) : (
                   <div></div>
                 )}
-                <button className="bg-red-500 text-sm  hover:bg-red-700 text-white font-bold py-2 px-4  rounded">
+                <button className="bg-red-500 text-[9px] lg:text-sm  hover:bg-red-700 text-white font-bold py-2 px-4  rounded">
                   Share <FontAwesomeIcon icon={faShareNodes} />
                 </button>
               </div>
 
               {/* VotAverage */}
-              <div className="text-sm  flex  bg-gray-900/60 border-y-2 border-y-gray-00 mt-3">
+              <div className="text-[9px]  lg:text-sm flex  bg-gray-900/60 border-y-2 border-y-gray-00 mt-3">
                 <div className="py-2   px-2 flex items-center flex-col justify-center text-yellow-400">
                   {movie.vote_average}
-                  <FontAwesomeIcon className="text-6xl " icon={faImdb} />
+                  <FontAwesomeIcon
+                    className="text-4xl lg:text-6xl "
+                    icon={faImdb}
+                  />
                 </div>
                 <div className="flex py-2 border-l-2 justify-center flex-col items-center">
                   <div className=" top-4 text-yellow-500 font-semibold">
                     rate this movie{" "}
                   </div>
-                  <Stack spacing={1} className=" ">
+                  <Stack spacing={1}>
                     <Rating
                       name="half-rating"
                       sx={{
@@ -117,29 +121,21 @@ function Movie() {
                           color: "white",
                         },
                       }}
+                      className=" scale-90 lg:scale-100"
                       defaultValue={2.5}
                       precision={0.5}
                     />
                   </Stack>
-                  
                 </div>
               </div>
               {/* watchList */}
 
-              <div>
-                {
-                  movie.lists
-           }
-              </div>
-
-
+              <div>{movie.lists}</div>
             </div>
           </div>
-
+          <TrailerCart movie={movie} setMovie={setMovie} mediaType = "movie"/>
           <p className="text-xl bg-gray-900/80 text-gray-300  rounded-3xl p-10 m-10  font-light fontSum">
-           <div className="">
-            ✔️summary :
-            </div>  <br />
+            <div className="">✔️summary :</div> <br />
             {movie.overview}
           </p>
         </div>
