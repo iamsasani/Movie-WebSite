@@ -20,6 +20,8 @@ function Movie() {
   const [movie, setMovie] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
+
+
   useEffect(() => {
     async function loadMovie() {
       const { data } = await axios.get(
@@ -101,7 +103,7 @@ function Movie() {
               </div>
 
               {/* VotAverage */}
-              <div className="text-[9px]  lg:text-sm flex  bg-gray-900/60 border-y-2 border-y-gray-00 mt-3">
+              <div className="text-[9px] text-sm flex  bg-gray-900/60 border-y-2 border-y-gray-00 mt-3">
                 <div className="py-2   px-2 flex items-center flex-col justify-center text-yellow-400">
                   {movie.vote_average}
                   <FontAwesomeIcon
@@ -128,16 +130,26 @@ function Movie() {
                   </Stack>
                 </div>
               </div>
+              <div className="flex flex-wrap gap-1 mt-2">
+                {movie.genres?.map((genre) => (
+                  <span
+                    key={genre.id}
+                    className="text-xs bg-gray-800 text-gray-200 px-2 py-1 rounded-full"
+                  >
+                    {genre.name}
+                  </span>
+                ))}
+              </div>
               {/* watchList */}
 
               <div>{movie.lists}</div>
             </div>
           </div>
-          <TrailerCart movie={movie} setMovie={setMovie} mediaType = "movie"/>
-          <p className="text-xl bg-gray-900/80 text-gray-300  rounded-3xl p-10 m-10  font-light fontSum">
+          <TrailerCart movie={movie} setMovie={setMovie} mediaType="movie" />
+          <div className="text-xl bg-gray-900/80 text-gray-300  rounded-3xl p-10 m-10  font-light fontSum">
             <div className="">✔️summary :</div> <br />
             {movie.overview}
-          </p>
+          </div>
         </div>
       ) : (
         "Movie not found"

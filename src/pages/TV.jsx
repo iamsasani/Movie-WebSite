@@ -127,6 +127,16 @@ function Movie() {
                   </Stack>
                 </div>
               </div>
+              <div className="flex flex-wrap gap-1 mt-2">
+                {movie.genres?.map((genre) => (
+                  <span
+                    key={genre.id}
+                    className="text-xs bg-gray-800 text-gray-200 px-2 py-1 rounded-full"
+                  >
+                    {genre.name}
+                  </span>
+                ))}
+              </div>
               {/* watchList */}
 
               <div>{movie.lists}</div>
