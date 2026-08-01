@@ -58,12 +58,12 @@ function Movie() {
   }
 
   return (
-    <div className="text-4xl container text-white min-h-screen mt-10  mx-auto">
+    <div className="text-4xl container text-white min-h-screen mt-10 mx-auto">
       {movie ? (
         <div className="flex flex-col items-center justify-center gap-4 ">
           <div className="flex gap-10">
             <img
-              className="w-70"
+              className="w-45 h-70 aspect-auto lg:w-70 lg:h-96 rounded-sm"
               src={`${BaseUrlImage}/w342${movie.poster_path}`}
               alt={movie.title}
             />
