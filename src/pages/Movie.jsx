@@ -14,38 +14,52 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faImdb } from "@fortawesome/free-brands-svg-icons";
 import TrailerCart from "../components/Content/TrailerCart";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import CastCard from "../components/Content/CastCard.jsx";
 
 function Movie() {
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const { user, session } = useContext(UserContext);
+  const [cast, setCast] = useState([]);
 
-
-useEffect(() => {
-  async function loadMovie() {
-    const { data } = await axios.get(
-      `${BaseUrlMovie}/movie/${id}?api_key=${ApiKey}`,
-    );
-    setMovie(data);
-  }
-
-  async function checkFavoriteStatus() {
-    if (!session) return;
-    try {
+  useEffect(() => {
+    async function loadMovie() {
       const { data } = await axios.get(
-        `${BaseUrlMovie}/movie/${id}/account_states?api_key=${ApiKey}&session_id=${session}`,
+        `${BaseUrlMovie}/movie/${id}?api_key=${ApiKey}`,
       );
-      setIsFavorite(data.favorite);
-    } catch {
-      setIsFavorite(false);
+      setMovie(data);
     }
-  }
 
-  loadMovie();
-  checkFavoriteStatus();
-}, [id, session]);
+    async function loadCast() {
+      try {
+        const { data } = await axios.get(
+          `${BaseUrlMovie}/movie/${id}/credits?api_key=${ApiKey}`,
+        );
+        setCast(data.cast.slice(0, 15));
+      } catch {
+        setCast([]);
+      }
+    }
 
+    async function checkFavoriteStatus() {
+      if (!session) return;
+      try {
+        const { data } = await axios.get(
+          `${BaseUrlMovie}/movie/${id}/account_states?api_key=${ApiKey}&session_id=${session}`,
+        );
+        setIsFavorite(data.favorite);
+      } catch {
+        setIsFavorite(false);
+      }
+    }
+
+    loadMovie();
+    loadCast();
+    checkFavoriteStatus();
+  }, [id, session]);
 
   async function handleAddToFavorite() {
     const newFavoriteStatus = !isFavorite;
@@ -160,6 +174,20 @@ useEffect(() => {
             </div>
           </div>
           <TrailerCart movie={movie} setMovie={setMovie} mediaType="movie" />
+
+          {cast.length > 0 && (
+            <div className="w-full max-w-5xl mb-10">
+              <h2 className="text-2xl font-bold mb-4 text-center">🎭 Cast</h2>
+              <Swiper slidesPerView="auto" spaceBetween={16} className="px-2">
+                {cast.map((person) => (
+                  <SwiperSlide key={person.id} style={{ width: "auto" }}>
+                    <CastCard person={person} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          )}
+
           <div className="text-xl bg-gray-900/80 text-gray-300  rounded-3xl p-10 m-10  font-light fontSum">
             <div className="">✔️summary :</div> <br />
             {movie.overview}

@@ -15,12 +15,16 @@ import {
 import { faImdb } from "@fortawesome/free-brands-svg-icons";
 
 import TrailerCart from "../components/Content/TrailerCart";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import CastCard from "../components/Content/CastCard.jsx";
 
 function Movie() {
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const { user, session } = useContext(UserContext);
+  const [cast , setCast] = useState([]);
 
   useEffect(() => {
   async function loadMovie() {
@@ -28,6 +32,17 @@ function Movie() {
       `${BaseUrlMovie}/tv/${id}?api_key=${ApiKey}`,
     );
     setMovie(data);
+  }
+
+  async function loadCast() {
+    try {
+      const { data } = await axios.get(
+        `${BaseUrlMovie}/tv/${id}/credits?api_key=${ApiKey}`,
+      );
+      setCast(data.cast.slice(0, 15));
+    } catch {
+      setCast([]);
+    }
   }
 
   async function checkFavoriteStatus() {
@@ -43,6 +58,7 @@ function Movie() {
   }
 
   loadMovie();
+  loadCast();
   checkFavoriteStatus();
 }, [id, session]);
 
@@ -158,6 +174,21 @@ function Movie() {
             </div>
           </div>
           <TrailerCart movie={movie} setMovie={setMovie} mediaType="tv" />
+
+          {cast.length > 0 && (
+            <div className="w-full max-w-5xl mb-10">
+              <h2 className="text-2xl font-bold mb-4 text-center">🎭 Cast</h2>
+              <Swiper slidesPerView="auto" spaceBetween={16} className="px-2">
+                {cast.map((person) => (
+                  <SwiperSlide key={person.id} style={{ width: "auto" }}>
+                    <CastCard person={person} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          )}
+
+
           <p className="text-xl bg-gray-900/80 text-gray-300  rounded-3xl p-10 m-10  font-light fontSum">
             <div className="">✔️summary :</div> <br />
             {movie.overview}
