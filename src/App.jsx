@@ -14,6 +14,7 @@ import People from "./pages/People";
 import TV from "./pages/TV";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
+import GenreProvider from "./data/GenreProvider";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Router>
         <UserProvider>
           <MovieContextProvider>
+            <GenreProvider>
             <ScrollToTop />
             <Nav />
             <Routes>
@@ -36,6 +38,7 @@ function App() {
             </Routes>
             <Footer />
             <Toaster />
+            </GenreProvider>
           </MovieContextProvider>
         </UserProvider>
       </Router>
