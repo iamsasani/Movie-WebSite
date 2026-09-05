@@ -4,15 +4,14 @@ import { Navigate } from "react-router-dom";
 import { imgUrl } from "../helpers/imgUrl";
 import axios from "axios";
 import { ApiKey, BaseUrlMovie } from "../data/data";
-import CartMovie from "../components/Content/CartMovie";
-import TvCart from "../components/Content/TvCart";
+import toast from "react-hot-toast";
+import FavoriteCard from "../components/Content/FavoriteCard";
 
 function Profile() {
   const { user, session, isLoading } = useContext(UserContext);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [favoriteTv, setFavoriteTv] = useState([]);
   const [loadingFavorites, setLoadingFavorites] = useState(true);
-
 
   useEffect(() => {
     if (!user || !session) return;
@@ -40,6 +39,29 @@ function Profile() {
 
     loadFavorites();
   }, [user, session]);
+
+  async function handleRemove(mediaId, mediaType) {
+    try {
+      await axios.post(
+        `${BaseUrlMovie}/account/${user.id}/favorite?api_key=${ApiKey}&session_id=${session}`,
+        {
+          media_type: mediaType,
+          media_id: mediaId,
+          favorite: false,
+        }
+      );
+
+      if (mediaType === "movie") {
+        setFavoriteMovies((prev) => prev.filter((m) => m.id !== mediaId));
+      } else {
+        setFavoriteTv((prev) => prev.filter((t) => t.id !== mediaId));
+      }
+
+      toast.success("Removed from favorites");
+    } catch {
+      toast.error("Something went wrong, please try again");
+    }
+  }
 
   if (!session) {
     return <Navigate to={"/login"} replace />;
@@ -83,7 +105,7 @@ function Profile() {
       </div>
 
       <div className="max-w-6xl mx-auto mt-10">
-        <h2 className="text-2xl font-bold text-gray-200 border-b-4 mb-4">🎬 Favorite Movies</h2>
+        <h2 className="text-2xl font-bold text-rose-500 mb-4">🎬 Favorite Movies</h2>
 
         {loadingFavorites ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -96,15 +118,19 @@ function Profile() {
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
             {favoriteMovies.map((movie) => (
-              <CartMovie key={movie.id} movie={movie} />
+              <FavoriteCard
+                key={movie.id}
+                item={movie}
+                mediaType="movie"
+                onRemove={(id) => handleRemove(id, "movie")}
+              />
             ))}
           </div>
         )}
       </div>
 
-
       <div className="max-w-6xl mx-auto mt-10">
-        <h2 className="text-2xl font-bold text-gray-200 border-b-4 mb-4">📺 Favorite TV Shows</h2>
+        <h2 className="text-2xl font-bold text-rose-500 mb-4">📺 Favorite TV Shows</h2>
 
         {loadingFavorites ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -117,7 +143,12 @@ function Profile() {
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
             {favoriteTv.map((tv) => (
-              <TvCart key={tv.id} tv={tv} />
+              <FavoriteCard
+                key={tv.id}
+                item={tv}
+                mediaType="tv"
+                onRemove={(id) => handleRemove(id, "tv")}
+              />
             ))}
           </div>
         )}

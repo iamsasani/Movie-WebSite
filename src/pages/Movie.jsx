@@ -19,19 +19,33 @@ function Movie() {
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
-
-
-
-  useEffect(() => {
-    async function loadMovie() {
-      const { data } = await axios.get(
-        `${BaseUrlMovie}/movie/${id}?api_key=${ApiKey}`,
-      );
-      setMovie(data);
-    }
-    loadMovie();
-  }, [id]);
   const { user, session } = useContext(UserContext);
+
+
+useEffect(() => {
+  async function loadMovie() {
+    const { data } = await axios.get(
+      `${BaseUrlMovie}/movie/${id}?api_key=${ApiKey}`,
+    );
+    setMovie(data);
+  }
+
+  async function checkFavoriteStatus() {
+    if (!session) return;
+    try {
+      const { data } = await axios.get(
+        `${BaseUrlMovie}/movie/${id}/account_states?api_key=${ApiKey}&session_id=${session}`,
+      );
+      setIsFavorite(data.favorite);
+    } catch {
+      setIsFavorite(false);
+    }
+  }
+
+  loadMovie();
+  checkFavoriteStatus();
+}, [id, session]);
+
 
   async function handleAddToFavorite() {
     const newFavoriteStatus = !isFavorite;
