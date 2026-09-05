@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { imgUrl } from "../../helpers/imgUrl";
 
 function CastCard({ person }) {
+  const subtitle = person.character || person.known_for_department;
+
   return (
     <Link to={`/people/${person.id}`}>
       <div className="flex flex-col items-center text-center w-28 shrink-0">
@@ -19,9 +21,9 @@ function CastCard({ person }) {
         <p className="text-sm font-semibold text-white mt-2 line-clamp-1">
           {person.name}
         </p>
-        <p className="text-xs text-gray-400 line-clamp-1">
-          {person.character}
-        </p>
+        {subtitle && (
+          <p className="text-xs text-gray-400 line-clamp-1">{subtitle}</p>
+        )}
       </div>
     </Link>
   );
