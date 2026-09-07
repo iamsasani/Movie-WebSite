@@ -31,3 +31,24 @@
 .imgCart{
   @apply object-cover aspect-2/3  ;
 }
+
+.app-background {
+  background-color: #0a0a10;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(225, 29, 72, 0.18), transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(124, 58, 237, 0.16), transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(245, 158, 11, 0.08), transparent 60%);
+  background-attachment: fixed;
+}
+@theme {
+  --animate-ticker: ticker var(--ticker-duration, 8s) linear infinite;
+}
+@keyframes drift {
+  0%, 100% { background-position: 0% 0%, 100% 100%, 50% 100%; }
+  50% { background-position: 5% 10%, 95% 90%, 55% 100%; }
+}
+
+.app-background {
+  background-size: 200% 200%;
+  animation: drift 25s ease-in-out infinite;
+}

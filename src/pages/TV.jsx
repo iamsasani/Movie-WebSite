@@ -25,6 +25,7 @@ function Movie() {
   const [isFavorite, setIsFavorite] = useState(false);
   const { user, session } = useContext(UserContext);
   const [cast , setCast] = useState([]);
+  const [userRating, setUserRating] = useState(0);
 
   useEffect(() => {
   async function loadMovie() {
@@ -45,17 +46,19 @@ function Movie() {
     }
   }
 
-  async function checkFavoriteStatus() {
-    if (!session) return;
-    try {
-      const { data } = await axios.get(
-        `${BaseUrlMovie}/tv/${id}/account_states?api_key=${ApiKey}&session_id=${session}`,
-      );
-      setIsFavorite(data.favorite);
-    } catch {
-      setIsFavorite(false);
+   async function checkFavoriteStatus() {
+      if (!session) return;
+      try {
+        const { data } = await axios.get(
+          `${BaseUrlMovie}/tv/${id}/account_states?api_key=${ApiKey}&session_id=${session}`,
+        );
+        setIsFavorite(data.favorite);
+        setUserRating(data.rated ? data.rated.value : 0);
+      } catch {
+        setIsFavorite(false);
+        setUserRating(0);
+      }
     }
-  }
 
   loadMovie();
   loadCast();
@@ -87,6 +90,39 @@ function Movie() {
     }
   }
 
+   async function handleRateMovie(newValue) {
+    if (!user) {
+      toast.error("You must log in to rate this movie");
+      return;
+    }
+
+    if (!newValue) {
+      return handleDeleteRating();
+    }
+
+    try {
+      await axios.post(
+        `${BaseUrlMovie}/tv/${id}/rating?api_key=${ApiKey}&session_id=${session}`,
+        { value: newValue },
+      );
+      setUserRating(newValue);
+      toast.success(`You rated this movie ${newValue}/10`);
+    } catch {
+      toast.error("Failed to submit your rating, please try again");
+    }
+  }
+
+  async function handleDeleteRating() {
+    try {
+      await axios.delete(
+        `${BaseUrlMovie}/tv/${id}/rating?api_key=${ApiKey}&session_id=${session}`,
+      );
+      setUserRating(0);
+      toast.success("Your rating has been removed");
+    } catch {
+      toast.error("Failed to remove your rating");
+    }
+  }
   return (
     <div className="text-4xl container text-white min-h-screen mt-10  mx-auto">
       {movie ? (
@@ -140,8 +176,10 @@ function Movie() {
                   />
                 </div>
                 <div className="flex py-2 border-l-2 justify-center flex-col items-center">
-                  <div className=" top-4 text-yellow-500 font-semibold">
-                    rate this movie{" "}
+                  <div className="top-4 text-yellow-500 font-semibold">
+                    {userRating > 0
+                      ? `Your rating: ${userRating}/10`
+                      : "Rate this movie"}
                   </div>
                   <Stack spacing={1}>
                     <Rating
@@ -151,9 +189,12 @@ function Movie() {
                           color: "white",
                         },
                       }}
-                      className=" scale-90 lg:scale-100"
-                      defaultValue={2.5}
+                      className="scale-90 lg:scale-100"
+                      value={userRating / 2}
                       precision={0.5}
+                      onChange={(event, newValue) => {
+                        handleRateMovie(newValue ? newValue * 2 : 0);
+                      }}
                     />
                   </Stack>
                 </div>

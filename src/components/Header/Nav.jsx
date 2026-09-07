@@ -1,4 +1,4 @@
-import { faBell, faList } from "@fortawesome/free-solid-svg-icons";
+import { faArrowAltCircleRight, faBell, faList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect, useRef, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
