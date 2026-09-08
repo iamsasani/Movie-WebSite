@@ -47,7 +47,7 @@ function Login() {
               action=""
               onSubmit={handleLogin}
             >
-              <div className="rounded-xl flex w-66 items-center bg-rose-400 px-3">
+              <div className="rounded-xl flex w-66 items-center bg-gray-500 px-3">
                 <label>
                   <FontAwesomeIcon icon={faUser} />
                 </label>
@@ -58,8 +58,8 @@ function Login() {
                   name="username"
                 />
               </div>
-              <div className="rounded-xl flex items-center w-66  justify-between bg-rose-400 px-3 ">
-                <div>
+              <div className="rounded-xl flex items-center w-66  justify-between bg-gray-500 px-3 ">
+                <div className="rounded-xl flex w-66 items-center bg-gray-500">
 
                 <label>
                   <FontAwesomeIcon icon={faLock} />
@@ -83,12 +83,12 @@ function Login() {
                 Login <FontAwesomeIcon icon={faArrowAltCircleRight}/>
               </button>
             </form>
-            <NavLink
-              to={"/signUp"}
+            <a
+              href="https://www.themoviedb.org/signup"
               className="text-blue-600  text-sm xl:text-lg cursor-pointer block mt-5"
             >
               Create Account
-            </NavLink>
+            </a>
             <NavLink className="text-gray-600 mt-8" to={"/"}>
               back to home <FontAwesomeIcon icon={faHome}/>
             </NavLink>

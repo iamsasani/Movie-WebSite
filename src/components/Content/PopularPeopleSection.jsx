@@ -25,7 +25,7 @@ function PopularPeopleSection() {
 
   return (
     <div className="pt-15 mb-10">
-      <h2 className="text-2xl text-rose-500 font-bold xl:text-4xl mb-4">
+      <h2 className="text-2xl text-gray-200 font-bold xl:text-4xl mb-4">
         ⭐ Popular People
       </h2>
 

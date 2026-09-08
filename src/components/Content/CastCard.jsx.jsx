@@ -11,7 +11,7 @@ function CastCard({ person }) {
           <img
             src={imgUrl(person.profile_path, "w185")}
             alt={person.name}
-            className="w-24 h-24 rounded-full object-cover border-2 border-gray-700 hover:border-rose-500 transition-colors"
+            className="w-24 h-24 rounded-full object-cover border-2 border-gray-700 hover:border-gray-300 transition-colors"
           />
         ) : (
           <div className="w-24 h-24 rounded-full bg-gray-800 flex items-center justify-center text-gray-500 text-xs border-2 border-gray-700">

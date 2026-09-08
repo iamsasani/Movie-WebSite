@@ -36,7 +36,7 @@ function TrendingSection() {
   return (
     <div className="md:flex gap-6 pb-2 items-baseline pt-15 mb-10">
       <div className="w-full">
-        <h2 className="text-2xl text-rose-500 font-bold xl:text-4xl mb-4">
+        <h2 className="text-2xl text-gray-200 font-bold xl:text-4xl mb-4">
           🔥 Trending Today
         </h2>
 
