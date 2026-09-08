@@ -58,7 +58,7 @@ function Login() {
                   name="username"
                 />
               </div>
-              <div className="rounded-xl flex items-center w-66  justify-between bg-gray-500 px-3 ">
+              <div className="rounded-xl flex items-center w-66  justify-between bg-gray-500 px-3 pr-1">
                 <div className="rounded-xl flex w-66 items-center bg-gray-500">
 
                 <label>
@@ -72,7 +72,7 @@ function Login() {
                   required
                 />
                 </div>
-                <label className="text-right">
+                <label className="text-right  ">
                   <FontAwesomeIcon   onClick={() => setShowPass(!showPass)} icon={faEye} />
                 </label>
               </div>
