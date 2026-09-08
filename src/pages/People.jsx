@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { ApiKey, BaseUrlMovie } from "../data/data";
+import { BaseUrlMovie } from "../data/data";
 import { useParams } from "react-router-dom";
 import { imgUrl } from "../helpers/imgUrl";
 function People() {
@@ -11,7 +11,7 @@ function People() {
   useEffect(() => {
     async function personalDetail() {
       const { data } = await axios.get(
-        `${BaseUrlMovie}/person/${id}?api_key=${ApiKey}`,
+        `${BaseUrlMovie}/person/${id}`,
       );
       setDetail(data);
     }

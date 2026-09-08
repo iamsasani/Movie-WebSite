@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ApiKey, BaseUrlMovie } from "./data";
+import { BaseUrlMovie } from "./data";
 import { GenreContext } from "./GenreContext";
 
 export default function GenreProvider({ children }) {
@@ -10,7 +10,7 @@ export default function GenreProvider({ children }) {
     async function loadGenres() {
       try {
         const { data } = await axios.get(
-          `${BaseUrlMovie}/genre/movie/list?api_key=${ApiKey}`
+          `${BaseUrlMovie}/genre/movie/list`
         );
         setGenres(data.genres);
       } catch {

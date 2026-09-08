@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { ApiKey, BaseUrlImage, BaseUrlMovie } from "../../data/data";
+import { BaseUrlImage, BaseUrlMovie } from "../../data/data";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../../Context/Context";
 import toast from "react-hot-toast";
@@ -16,7 +16,7 @@ const [showTrailer, setShowTrailer] = useState(false);
 useEffect(() => {
   async function loadMovie() {
     const { data } = await axios.get(
-      `${BaseUrlMovie}/${mediaType}/${id}?api_key=${ApiKey}`
+      `${BaseUrlMovie}/${mediaType}/${id}`
     );
     setMovie(data);
   }
@@ -24,7 +24,7 @@ useEffect(() => {
   async function loadVideos() {
     try {
       const { data } = await axios.get(
-        `${BaseUrlMovie}/${mediaType}/${id}/videos?api_key=${ApiKey}`
+        `${BaseUrlMovie}/${mediaType}/${id}/videos`
       );
       const trailer = data.results.find(
         (video) => video.type === "Trailer" && video.site === "YouTube"

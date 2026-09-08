@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { ApiKey, BaseUrlImage, BaseUrlMovie } from "../data/data";
+import { BaseUrlImage, BaseUrlMovie } from "../data/data";
 import TickerTitle from "../components/TickerTitle";
 import { Link } from "react-router-dom";
 import { GenreContext } from "../data/GenreContext";
@@ -11,14 +11,14 @@ function Movies() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
- 
   useEffect(() => {
     async function loadMovies() {
       setLoading(true);
       try {
-        const genreParam = selectedGenre ? `&with_genres=${selectedGenre}` : "";
+        const genreParam = selectedGenre ? `?with_genres=${selectedGenre}` : "";
+
         const { data } = await axios.get(
-          `${BaseUrlMovie}/discover/movie?api_key=${ApiKey}${genreParam}`
+          `${BaseUrlMovie}/discover/movie${genreParam}`,
         );
         setMovies(data.results);
       } finally {
@@ -59,15 +59,23 @@ function Movies() {
       {loading ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-6">
           {Array.from({ length: 10 }).map((_, i) => (
-            <div key={i} className="h-72 rounded-xl bg-gray-800/50 animate-pulse" />
+            <div
+              key={i}
+              className="h-72 rounded-xl bg-gray-800/50 animate-pulse"
+            />
           ))}
         </div>
       ) : movies.length === 0 ? (
-        <p className="text-gray-400 text-center text-xl">No movies found for this genre.</p>
+        <p className="text-gray-400 text-center text-xl">
+          No movies found for this genre.
+        </p>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-6">
           {movies.map((movie) => (
-            <div key={movie.id} className="rounded-xl pb-2 bg-gray-900 overflow-hidden">
+            <div
+              key={movie.id}
+              className="rounded-xl pb-2 bg-gray-900 overflow-hidden"
+            >
               <Link to={`/movies/${movie.id}`}>
                 <img
                   src={`${BaseUrlImage}/w500${movie.poster_path}`}

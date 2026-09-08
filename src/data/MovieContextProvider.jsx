@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Context } from "./Context";
 import axios from "axios";
-import { ApiKey, BaseUrlMovie } from "./data";
+import {  BaseUrlMovie } from "./data";
 
 const MovieContextProvider = (props) => {
 
@@ -18,7 +18,7 @@ const MovieContextProvider = (props) => {
       useEffect(() => {
     async function loadMovies() {
       const { data } = await axios.get(
-        `${BaseUrlMovie}/${movieType}?api_key=${ApiKey}`,
+        `${BaseUrlMovie}/${movieType}`,
       );
       setMovies(data.results);
     }
@@ -32,7 +32,7 @@ const MovieContextProvider = (props) => {
     useEffect(() => {
     async function loadTV() {
       const { data } = await axios.get(
-        `${BaseUrlMovie}/${tvType}?api_key=${ApiKey}`,
+        `${BaseUrlMovie}/${tvType}`,
       );
       setTv(data.results);
     }

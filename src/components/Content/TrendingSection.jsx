@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
-import { ApiKey, BaseUrlImage, BaseUrlMovie } from "../../data/data";
+import {  BaseUrlImage, BaseUrlMovie } from "../../data/data";
 
 function TrendingSection() {
   const [trending, setTrending] = useState([]);
@@ -14,7 +14,7 @@ function TrendingSection() {
     async function loadTrending() {
       try {
         const { data } = await axios.get(
-          `${BaseUrlMovie}/trending/all/day?api_key=${ApiKey}`
+          `${BaseUrlMovie}/trending/all/day`
         );
         setTrending(data.results);
       } finally {

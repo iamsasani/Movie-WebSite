@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { UserContext } from "./Context";
 import axios from "axios";
-import { ApiKey, BaseUrlMovie } from "../data/data";
+import { BaseUrlMovie } from "../data/data";
 import toast from "react-hot-toast";
 import {  useLocation, useNavigate } from "react-router-dom";
 
@@ -26,7 +26,7 @@ export default function UserProvider({ children }) {
 
       try {
         const { data } = await axios.get(
-          `${BaseUrlMovie}/account?api_key=${ApiKey}&session_id=${session}`,
+          `${BaseUrlMovie}/account?session_id=${session}`,
         );
         setUser(data);
 
@@ -49,10 +49,10 @@ export default function UserProvider({ children }) {
   async function login(username, password) {
     try {
       const tokenResult = await axios.get(
-        `${BaseUrlMovie}/authentication/token/new?api_key=${ApiKey}`,
+        `${BaseUrlMovie}/authentication/token/new`,
       );
       await axios.post(
-        `${BaseUrlMovie}/authentication/token/validate_with_login?api_key=${ApiKey}`,
+        `${BaseUrlMovie}/authentication/token/validate_with_login`,
         {
           username,
           password,
@@ -60,7 +60,7 @@ export default function UserProvider({ children }) {
         },
       );
       const sessionResponse = await axios.post(
-        `${BaseUrlMovie}/authentication/session/new?api_key=${ApiKey}`,
+        `${BaseUrlMovie}/authentication/session/new`,
         {
           request_token: tokenResult.data.request_token,
         },

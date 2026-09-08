@@ -2,7 +2,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { ApiKey, BaseUrlMovie } from "../../../data/data";
+import { BaseUrlMovie } from "../../../data/data";
 import TV from "./items/TV";
 import Movie from "./items/Movie";
 import Person from "./items/Person";
@@ -15,10 +15,7 @@ function SearchBox() {
     const timeout = setTimeout(async () => {
       if (query) {
         const { data } = await axios.get(`${BaseUrlMovie}/search/multi`, {
-          params: {
-            query: query,
-            api_key: ApiKey,
-          },
+          params: { query },
         });
         console.log(data.results);
         setSearchResult(data.results);

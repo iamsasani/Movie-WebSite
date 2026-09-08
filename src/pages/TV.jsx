@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ApiKey, BaseUrlImage, BaseUrlMovie } from "../data/data";
+import {  BaseUrlImage, BaseUrlMovie } from "../data/data";
 import { UserContext } from "../Context/Context";
 import toast from "react-hot-toast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,7 +30,7 @@ function Movie() {
   useEffect(() => {
   async function loadMovie() {
     const { data } = await axios.get(
-      `${BaseUrlMovie}/tv/${id}?api_key=${ApiKey}`,
+      `${BaseUrlMovie}/tv/${id}`,
     );
     setMovie(data);
   }
@@ -38,7 +38,7 @@ function Movie() {
   async function loadCast() {
     try {
       const { data } = await axios.get(
-        `${BaseUrlMovie}/tv/${id}/credits?api_key=${ApiKey}`,
+        `${BaseUrlMovie}/tv/${id}/credits`,
       );
       setCast(data.cast.slice(0, 15));
     } catch {
@@ -50,7 +50,7 @@ function Movie() {
       if (!session) return;
       try {
         const { data } = await axios.get(
-          `${BaseUrlMovie}/tv/${id}/account_states?api_key=${ApiKey}&session_id=${session}`,
+          `${BaseUrlMovie}/tv/${id}/account_states?session_id=${session}`,
         );
         setIsFavorite(data.favorite);
         setUserRating(data.rated ? data.rated.value : 0);
@@ -71,7 +71,7 @@ function Movie() {
 
     try {
       await axios.post(
-        `${BaseUrlMovie}/account/${user.id}/favorite?api_key=${ApiKey}&session_id=${session}`,
+        `${BaseUrlMovie}/account/${user.id}/favorite?session_id=${session}`,
         {
           media_type: "tv",
           media_id: movie.id,
@@ -102,7 +102,7 @@ function Movie() {
 
     try {
       await axios.post(
-        `${BaseUrlMovie}/tv/${id}/rating?api_key=${ApiKey}&session_id=${session}`,
+        `${BaseUrlMovie}/tv/${id}/rating?session_id=${session}`,
         { value: newValue },
       );
       setUserRating(newValue);
@@ -115,7 +115,7 @@ function Movie() {
   async function handleDeleteRating() {
     try {
       await axios.delete(
-        `${BaseUrlMovie}/tv/${id}/rating?api_key=${ApiKey}&session_id=${session}`,
+        `${BaseUrlMovie}/tv/${id}/rating?session_id=${session}`,
       );
       setUserRating(0);
       toast.success("Your rating has been removed");

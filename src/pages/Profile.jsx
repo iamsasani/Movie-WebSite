@@ -3,7 +3,7 @@ import { UserContext } from "../Context/Context";
 import { Navigate } from "react-router-dom";
 import { imgUrl } from "../helpers/imgUrl";
 import axios from "axios";
-import { ApiKey, BaseUrlMovie } from "../data/data";
+import {  BaseUrlMovie } from "../data/data";
 import toast from "react-hot-toast";
 import FavoriteCard from "../components/Content/FavoriteCard";
 
@@ -21,10 +21,10 @@ function Profile() {
       try {
         const [moviesRes, tvRes] = await Promise.all([
           axios.get(
-            `${BaseUrlMovie}/account/${user.id}/favorite/movies?api_key=${ApiKey}&session_id=${session}`
+            `${BaseUrlMovie}/account/${user.id}/favorite/movies?session_id=${session}`
           ),
           axios.get(
-            `${BaseUrlMovie}/account/${user.id}/favorite/tv?api_key=${ApiKey}&session_id=${session}`
+            `${BaseUrlMovie}/account/${user.id}/favorite/tv?session_id=${session}`
           ),
         ]);
         setFavoriteMovies(moviesRes.data.results);
@@ -43,7 +43,7 @@ function Profile() {
   async function handleRemove(mediaId, mediaType) {
     try {
       await axios.post(
-        `${BaseUrlMovie}/account/${user.id}/favorite?api_key=${ApiKey}&session_id=${session}`,
+        `${BaseUrlMovie}/account/${user.id}/favorite?session_id=${session}`,
         {
           media_type: mediaType,
           media_id: mediaId,

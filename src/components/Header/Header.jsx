@@ -4,7 +4,7 @@ import "swiper/css/autoplay";
 import "swiper/css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { ApiKey, BaseUrlImage, BaseUrlMovie } from "../../data/data";
+import {  BaseUrlImage, BaseUrlMovie } from "../../data/data";
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -15,7 +15,7 @@ function Header() {
     async function loadMovies() {
       try {
         const { data } = await axios.get(
-          `${BaseUrlMovie}/movie/popular?api_key=${ApiKey}`,
+          `${BaseUrlMovie}/movie/popular`,
         );
         setMovies(data.results);
       } finally {

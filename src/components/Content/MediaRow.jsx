@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { ApiKey, BaseUrlMovie } from "../../data/data";
+import {  BaseUrlMovie } from "../../data/data";
 import CartMovie from "./CartMovie";
 import TvCart from "./TvCart";
 
@@ -16,7 +16,7 @@ function MediaRow({ title, endpoint, mediaType }) {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `${BaseUrlMovie}/${endpoint}?api_key=${ApiKey}`
+          `${BaseUrlMovie}/${endpoint}`
         );
         setItems(data.results);
       } finally {

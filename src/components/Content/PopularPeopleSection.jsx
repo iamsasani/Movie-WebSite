@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { ApiKey, BaseUrlMovie } from "../../data/data";
+import { BaseUrlMovie } from "../../data/data";
 import CastCard from "../Content/CastCard.jsx";
 
 function PopularPeopleSection() {
@@ -13,7 +13,7 @@ function PopularPeopleSection() {
     async function loadPeople() {
       try {
         const { data } = await axios.get(
-          `${BaseUrlMovie}/person/popular?api_key=${ApiKey}`
+          `${BaseUrlMovie}/person/popular`
         );
         setPeople(data.results.slice(0, 15));
       } finally {
