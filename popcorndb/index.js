@@ -26,13 +26,19 @@ var worker_entry_default = { async fetch(request, env) {
 		tmdbUrl.searchParams.set("api_key", env.TMDB_API_KEY);
 		const response = await fetch(tmdbUrl.toString(), {
 			method: request.method,
-			headers: { Accept: "application/json" }
+			headers: {
+				Accept: "application/json",
+				"Content-Type": request.headers.get("Content-Type") || "application/json"
+			},
+			body: request.method === "GET" || request.method === "HEAD" ? void 0 : request.body
 		});
 		return new Response(response.body, {
 			status: response.status,
 			headers: {
 				"Content-Type": response.headers.get("Content-Type") || "application/json",
-				"Access-Control-Allow-Origin": "*"
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+				"Access-Control-Allow-Headers": "Content-Type"
 			}
 		});
 	}
