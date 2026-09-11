@@ -1,3 +1,5 @@
-export function imgUrl(path , size){
-    return `http://image.tmdb.org/t/p/${size}${path}`
-};
+import { BaseUrlImage } from "../data/data";
+
+export function imgUrl(path, size) {
+  return `${BaseUrlImage}/${size}${path}`;
+}

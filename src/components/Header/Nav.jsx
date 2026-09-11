@@ -1,4 +1,4 @@
-import { faArrowAltCircleRight, faBell, faList } from "@fortawesome/free-solid-svg-icons";
+import {  faBell, faList } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect, useRef, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
@@ -58,7 +58,7 @@ function Nav() {
     setShowMenu((prev) => !prev);
   }
 
-  const { user, logOut } = useContext(UserContext);
+  const { user, logout } = useContext(UserContext);
   return (
     <nav ref={menuRef}>
       <div className="flex px-2 justify-center text-xs lg:text-[1rem] xl:text-[1.5rem] items-center text-slate-300 uppercase">
@@ -84,7 +84,7 @@ function Nav() {
               <>
                 <div>{user.name}</div>
                 <button
-                  onClick={logOut}
+                  onClick={logout}
                   className="bg-red-600 cursor-pointer px-2 py-1 rounded-md"
                 >
                   LogOut

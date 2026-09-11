@@ -3,83 +3,131 @@ import { UserContext } from "./Context";
 import axios from "axios";
 import { BaseUrlMovie } from "../data/data";
 import toast from "react-hot-toast";
-import {  useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function UserProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [session, setSession] = useState(() => localStorage.getItem("session"));
-  const [isLoading, setIsLoading] = useState(Boolean(localStorage.getItem("session")));
+
+  const [session, setSession] = useState(() =>
+    localStorage.getItem("session")
+  );
+
   const navigate = useNavigate();
   const location = useLocation();
 
+  const isLoading = Boolean(session) && user === null;
+
+  // -----------------------------
+  // Get current user
+  // -----------------------------
   useEffect(() => {
-    if (!session) {
-      setUser(null);
-      setIsLoading(false);
-      return;
-    }
+    if (!session) return;
 
     localStorage.setItem("session", session);
 
-    async function getUserData() {
-      setIsLoading(true);
+    let cancelled = false;
 
+    async function getUserData() {
       try {
         const { data } = await axios.get(
-          `${BaseUrlMovie}/account?session_id=${session}`,
+          `${BaseUrlMovie}/account?session_id=${session}`
         );
+
+        if (cancelled) return;
+
         setUser(data);
 
         if (location.pathname === "/login") {
           navigate("/profile", { replace: true });
         }
       } catch {
+        if (cancelled) return;
+
         setUser(null);
         setSession(null);
         localStorage.removeItem("session");
+
         toast.error("Session expired. Please login again.");
-      } finally {
-        setIsLoading(false);
       }
     }
 
     getUserData();
+
+    return () => {
+      cancelled = true;
+    };
   }, [session, location.pathname, navigate]);
 
+  // -----------------------------
+  // Login
+  // -----------------------------
   async function login(username, password) {
     try {
-      const tokenResult = await axios.get(
-        `${BaseUrlMovie}/authentication/token/new`,
+      // 1. Get request token
+      const tokenResponse = await axios.get(
+        `${BaseUrlMovie}/authentication/token/new`
       );
+
+      const requestToken = tokenResponse.data.request_token;
+
+      // 2. Validate token with username/password
       await axios.post(
         `${BaseUrlMovie}/authentication/token/validate_with_login`,
         {
           username,
           password,
-          request_token: tokenResult.data.request_token,
-        },
+          request_token: requestToken,
+        }
       );
+
+      // 3. Create session
       const sessionResponse = await axios.post(
         `${BaseUrlMovie}/authentication/session/new`,
         {
-          request_token: tokenResult.data.request_token,
-        },
+          request_token: requestToken,
+        }
       );
-      setSession(sessionResponse.data.session_id);
-    } catch {
-      toast.error("invalid username and password!");
+
+      const newSession = sessionResponse.data.session_id;
+
+      // Save session
+      localStorage.setItem("session", newSession);
+      setSession(newSession);
+
+      toast.success("Login successful");
+
+      navigate("/profile", { replace: true });
+    } catch (error) {
+      console.error("LOGIN ERROR:", error.response?.data || error);
+
+      toast.error(
+        error.response?.data?.status_message ||
+          "Invalid username or password"
+      );
     }
   }
 
-  function logOut() {
+  // -----------------------------
+  // Logout
+  // -----------------------------
+  function logout() {
     setUser(null);
     setSession(null);
-    setIsLoading(false);
     localStorage.removeItem("session");
+    navigate("/login");
   }
 
   return (
-    <UserContext.Provider value={{ user, setUser, login, session, logOut, isLoading }}>
+    <UserContext.Provider
+      value={{
+        user,
+        session,
+        isLoading,
+        login,
+        logout,
+        setSession,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

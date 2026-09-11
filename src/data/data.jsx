@@ -1,4 +1,4 @@
 
 export const BaseUrlMovie = "/tmdb";
 
-export const BaseUrlImage = "https://image.tmdb.org/t/p";
+export const BaseUrlImage = "/tmdb-image";
